@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12382f">
+<title>Goodvibes HQ — Member Access</title>
+<!-- GOODVIBES HQ V18 FINAL FIXED BUILD -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:#f7f3ea;color:#17352e}button,input,textarea{font:inherit}button{cursor:pointer}.top{background:#12382f;color:#fff;padding:28px 22px 24px;border-bottom:4px solid #c9a44c}.brand{font-size:27px;font-weight:900;letter-spacing:1px}.brand span{color:#d4b45c}.tag{margin:7px 0 0;color:#e8eee9;font-size:14px}.wrap{max-width:760px;margin:auto;padding:22px 16px 110px}.card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.06);margin-bottom:16px}.kicker{font-size:12px;font-weight:800;letter-spacing:1.5px;color:#92742f}.hero h1{font-size:34px;line-height:1.08;margin:9px 0 12px}.hero p{font-size:17px;line-height:1.6;color:#5d6b66}.auth{margin-top:20px}.tabs{display:flex;gap:8px;margin-bottom:18px}.tab{flex:1;border:1px solid #ddd5c7;background:#faf8f1;padding:12px;border-radius:12px;font-weight:800;color:#52625d}.tab.active{background:#17352e;color:#fff;border-color:#17352e}.field{margin:12px 0}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input,.field textarea{width:100%;border:1px solid #d8d2c5;border-radius:12px;padding:13px;background:#fff;color:#17352e}.btn{width:100%;border:0;border-radius:13px;padding:14px;font-weight:800;cursor:pointer}.btn:disabled{opacity:.55;cursor:wait}.primary{background:#c9a44c;color:#17352e}.secondary{background:#17352e;color:#fff}.muted{font-size:13px;color:#697670;line-height:1.5}.msg{display:none;margin-top:12px;padding:12px;border-radius:12px;background:#f3eee1;font-size:13px;line-height:1.5}.msg.show{display:block}.success{background:#e9f2ec}.error{background:#f6e9e6}.hidden{display:none!important}.welcome h2{font-size:28px;margin:8px 0}.progress{background:#17352e;color:#fff;border-radius:18px;padding:18px;margin:15px 0}.bar{height:9px;background:rgba(255,255,255,.2);border-radius:20px;overflow:hidden;margin-top:10px}.fill{height:100%;background:#d4b45c;width:0;transition:width .3s ease}.daygrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.day{padding:17px;border:2px solid #eee7d9;border-radius:16px;background:#fff;cursor:pointer;transition:.15s}.day:active{transform:scale(.99)}.day.locked{opacity:.45;cursor:not-allowed}.day.done{border-color:#8aa394}.day.active{border-color:#c9a44c}.day b{display:block;margin:5px 0}.status{font-size:12px;font-weight:700;color:#68756f}.lesson h2{font-size:27px;margin:7px 0}.lesson-summary{font-size:17px;line-height:1.6}.reflection-label{display:block;margin-top:16px}.reflection-label strong{display:block;margin-bottom:7px}.step{background:#faf8f1;padding:15px;border-radius:14px;margin:12px 0;line-height:1.55}.step strong{display:block;margin-bottom:5px}.lesson textarea{min-height:120px;resize:vertical}.row{display:flex;gap:10px}.row .btn{width:auto;flex:1}.section-title{font-size:27px;margin:8px 0 10px}.check{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee7d9}.check:last-child{border-bottom:0}.checkmark{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#f1ede4;font-weight:900}.checkmark.done{background:#dcebe1}.event-card{border:1px solid #eee7d9;border-radius:16px;padding:16px;margin:12px 0;background:#fff}.event-date{font-size:12px;font-weight:800;color:#92742f;text-transform:uppercase;letter-spacing:.6px}.event-card h3{margin:7px 0;font-size:20px}.event-meta{display:inline-block;margin:8px 0;padding:7px 9px;border-radius:9px;background:#faf8f1;font-size:11px;font-weight:800;color:#52625d}.event-link{display:block;text-align:center;text-decoration:none;margin-top:12px}.event-empty{padding:8px 0 2px}.event-icon{font-size:30px;margin-bottom:8px}.event-empty strong{font-size:22px}.nav-spacer{height:4px}nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd5c7;display:flex;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));z-index:20;overflow-x:auto}nav button{background:none;border:0;color:#52625d;font-weight:700;font-size:10px;min-width:54px;flex:1;padding:3px 2px;white-space:nowrap}nav button.active{color:#17352e;font-weight:900}nav strong{display:block;font-size:18px;margin-bottom:2px}@media(max-width:480px){.hero h1{font-size:29px}.daygrid{grid-template-columns:1fr 1fr}.card{padding:20px}}
+.forgot-wrap{text-align:right;margin:7px 0 2px}.linkBtn{background:none;border:0;padding:5px 0;color:#17352e;font-weight:700;font-size:14px;cursor:pointer;text-decoration:underline}.linkBtn:hover{opacity:.75}.linkBtn.hidden{display:none}
+.build-hero{background:#17352e;color:#fff;border-radius:20px;padding:22px;margin:14px 0}
+.build-hero .kicker{color:#d4b45c}
+.build-hero h2{font-size:28px;margin:8px 0 10px;color:#fff}
+.build-hero p{color:#dfe7e3;line-height:1.55}
+.build-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+.build-card{border:1px solid #eee7d9;border-radius:17px;padding:18px;background:#fff}
+.build-card .build-num{font-size:12px;font-weight:800;color:#92742f;letter-spacing:1px}
+.build-card h3{margin:6px 0;font-size:21px}
+.build-card p{color:#697670;line-height:1.5;margin:8px 0}
+.build-detail{background:#faf8f1;border-radius:13px;padding:14px;margin-top:12px;line-height:1.55}
+.build-detail strong{display:block;margin-bottom:5px}
+.build-toggle{margin-top:12px;width:100%;background:#17352e;color:#fff;border:0;border-radius:11px;padding:12px;font-weight:800}
+
+.buildInput,.buildAction{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d8d1c5;border-radius:12px;background:#fff;color:#17352e;font:inherit;margin-top:8px}.buildAction{margin-top:0}.buildCompleteBtn{margin-top:12px}
+
+.tool-card{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #e4ddd1}.tool-card:last-of-type{border-bottom:0}.tool-card p{margin:5px 0 0}.tool-detail{margin-top:10px;padding:14px;border-radius:12px;background:#f5f1e8}.ocedi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}.ocedi-grid div{padding:12px 6px;text-align:center;border:1px solid #ddd5c7;border-radius:12px;background:#faf8f1}.ocedi-grid strong{display:block;font-size:22px;margin-bottom:5px}.ocedi-grid span{font-size:11px}.prompt-box{padding:14px;border:1px solid #ddd5c7;border-radius:12px;margin-top:10px;background:#faf8f1}.prompt-box p{line-height:1.55}.copyPrompt{border:0;border-radius:10px;padding:9px 12px;font-weight:700;cursor:pointer;background:#17352e;color:#fff}@media(max-width:480px){.ocedi-grid{grid-template-columns:repeat(5,1fr);gap:4px}.ocedi-grid div{padding:9px 2px}.ocedi-grid span{font-size:9px}.tool-card{align-items:flex-start;flex-direction:column}.tool-card .btn{width:100%}}
+
+.builder-dashboard{overflow:hidden}.dashboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:14px 0}.dash-stat{padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:#f8f4ea}.dash-label{display:block;font-size:10px;font-weight:800;letter-spacing:.08em;color:#6b756f}.dash-stat strong{display:block;font-size:20px;margin-top:4px}.dash-stat small{display:block;color:#6b756f;margin-top:3px}.win-form{display:grid;gap:9px;margin-top:12px}.win-form input,.win-form select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d8d1c5;border-radius:12px;background:#fff;color:#17352e;font:inherit}.win-item{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #e4ddd1}.win-badge{font-size:20px}.win-item strong{display:block}.win-item small{color:#6b756f}.win-empty{padding:14px 0;color:#6b756f}@media(max-width:620px){.dashboard-grid{grid-template-columns:repeat(2,1fr)}}
+
+.week-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}.week-grid label{display:grid;gap:6px;padding:12px;border:1px solid #ddd5c7;border-radius:12px;background:#faf8f1;font-weight:700}.week-grid input{padding:10px;border:1px solid #d8d1c5;border-radius:10px;font:inherit}.activity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.activityBtn{padding:13px;border:1px solid #d8d1c5;border-radius:12px;background:#faf8f1;font-weight:800;color:#17352e;cursor:pointer}.score-row{padding:12px 0;border-bottom:1px solid #e4ddd1}.score-row:last-child{border-bottom:0}.score-line{display:flex;justify-content:space-between;gap:10px}.score-bar{height:8px;border-radius:10px;background:#e5dfd4;overflow:hidden;margin-top:7px}.score-fill{height:100%;border-radius:10px}.builderReview{width:100%;box-sizing:border-box;min-height:80px;padding:12px;margin-top:9px;border:1px solid #d8d1c5;border-radius:12px;font:inherit;color:#17352e}@media(max-width:520px){.week-grid,.activity-grid{grid-template-columns:1fr}}
+
+/* V14 — Leadership layer */
+.lead-hero{background:#17352e;color:#fff;border-radius:20px;padding:22px;margin:14px 0}.lead-hero .kicker{color:#d4b45c}.lead-hero h2{font-size:29px;margin:8px 0 10px}.lead-hero p{color:#dfe7e3;line-height:1.55}.lead-stage{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.lead-stat{padding:14px;border:1px solid #eee7d9;border-radius:14px;background:#fff}.lead-stat strong{display:block;font-size:20px;margin-top:4px}.lead-stat small{color:#697670}.lead-progress{height:9px;background:#e5dfd4;border-radius:20px;overflow:hidden;margin-top:8px}.lead-progress-fill{height:100%;background:#c9a44c;width:0;transition:width .25s}.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.lead-card{border:1px solid #eee7d9;border-radius:16px;padding:17px;background:#fff}.lead-card h3{margin:5px 0 7px;font-size:19px}.lead-card p{color:#697670;line-height:1.5}.lead-card .btn{margin-top:8px}.lead-detail{margin-top:12px;padding:14px;border-radius:13px;background:#faf8f1;line-height:1.55}.lead-check{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #e4ddd1}.lead-check:last-child{border-bottom:0}.lead-check input{margin-top:4px}.lead-form textarea,.lead-form input,.lead-form select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #d8d1c5;border-radius:12px;background:#fff;color:#17352e;font:inherit}.lead-form textarea{min-height:90px;resize:vertical}.coach-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.coach-box{padding:13px;border-radius:13px;background:#f7f3ea}.coach-box strong{display:block;margin-bottom:5px}.leader-item{padding:12px 0;border-bottom:1px solid #e4ddd1}.leader-item:last-child{border-bottom:0}.leader-item small{color:#697670}.lead-pill{display:inline-block;padding:6px 8px;border-radius:9px;background:#faf8f1;font-size:11px;font-weight:800;margin:3px 4px 3px 0}.lead-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.lead-actions button{border:1px solid #d8d1c5;border-radius:12px;padding:12px;background:#faf8f1;font-weight:800;color:#17352e}.lead-actions button.active{background:#17352e;color:#fff;border-color:#17352e}.lead-note{font-size:12px;color:#697670;line-height:1.5;margin-top:8px}@media(max-width:560px){.lead-grid,.lead-stage,.coach-row,.lead-actions{grid-template-columns:1fr}}
+
+/* V16 — Academy completion + unified journey */
+.academy-hero{background:#17352e;color:#fff;border-radius:20px;padding:22px;margin:14px 0}.academy-hero .kicker{color:#d4b45c}.academy-hero h2{font-size:29px;margin:8px 0 10px}.academy-hero p{color:#dfe7e3;line-height:1.55}.academy-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.academy-module{border:1px solid #eee7d9;border-radius:16px;padding:16px;background:#fff}.academy-module.done{border-color:#8aa394;background:#f7fbf8}.academy-module h3{margin:5px 0 7px;font-size:18px}.academy-module p{font-size:13px;color:#697670;line-height:1.45}.academy-status{font-size:11px;font-weight:800;color:#697670}.academy-module.done .academy-status{color:#3d7255}.academy-detail{margin-top:14px;padding:17px;border-radius:16px;background:#faf8f1;border:1px solid #e4ddd1}.academy-detail h3{font-size:24px;margin:5px 0 8px}.academy-detail p,.academy-detail li{line-height:1.55;color:#52625d}.academy-detail textarea{width:100%;min-height:110px;box-sizing:border-box;padding:12px;border:1px solid #d8d1c5;border-radius:12px;background:#fff;color:#17352e;font:inherit;resize:vertical}.academy-tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.academy-tag{padding:6px 8px;border-radius:9px;background:#f0eadc;font-size:11px;font-weight:800}.academy-progress{height:9px;background:#e5dfd4;border-radius:20px;overflow:hidden;margin-top:9px}.academy-progress-fill{height:100%;background:#c9a44c;width:0;transition:width .25s}.pathway{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.pathway div{padding:12px;border-radius:13px;background:#f7f3ea;text-align:center;font-weight:800;font-size:12px}.pathway .current{background:#17352e;color:#fff}@media(max-width:560px){.academy-grid{grid-template-columns:1fr}.pathway{grid-template-columns:1fr}}
+
+/* V17 — final mobile navigation + launch polish */
+.more-sheet{position:fixed;inset:0;background:rgba(12,29,24,.42);z-index:40;display:flex;align-items:flex-end;justify-content:center;padding:0}.more-panel{width:min(760px,100%);background:#fff;border-radius:24px 24px 0 0;padding:18px 16px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -12px 40px rgba(0,0,0,.16)}.more-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.more-head h3{margin:0;font-size:20px}.more-close{border:0;background:#f2eee5;border-radius:10px;padding:9px 12px;font-weight:800}.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.more-item{border:1px solid #e4ddd1;background:#faf8f1;border-radius:14px;padding:14px;text-align:left;font-weight:800;color:#17352e}.more-item strong{display:block;font-size:20px;margin-bottom:5px}.more-item small{display:block;color:#697670;font-weight:600;line-height:1.35}.app-footer{margin:10px 0 20px;text-align:center;color:#7a817c;font-size:11px}.journey-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:12px 0}.journey-strip div{padding:10px 6px;border-radius:11px;background:#f5f1e8;text-align:center;font-size:10px;font-weight:800}.journey-strip .current{background:#17352e;color:#fff}.next-chip{display:inline-block;padding:7px 9px;border-radius:9px;background:#f0eadc;font-size:11px;font-weight:800;color:#6d5827}@media(max-width:480px){.journey-strip{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">GOODVIBES <span>HQ</span></div><div class="tag">People First • Opportunity Second • Hype Never</div></header>
+<main class="wrap">
+<section id="authView">
+  <div class="card hero">
+    <div class="kicker">WELCOME, BUILDER</div>
+    <h1>Your next chapter starts with one step.</h1>
+    <p>Goodvibes HQ is where members learn the mindset, skills and systems to build with purpose — one practical step at a time.</p>
+    <div class="auth">
+      <div class="tabs"><button id="loginTab" type="button" class="tab active">Log in</button><button id="signupTab" type="button" class="tab">Create account</button></div>
+      <form id="authForm">
+        <div class="field hidden" id="nameField"><label for="name">Your name</label><input id="name" autocomplete="name" placeholder="Your name"></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+        <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></div>
+<div class="forgot-wrap"><button id="forgotBtn" type="button" class="linkBtn">Forgot password?</button></div>
+        <button class="btn primary" id="submitBtn" type="submit">Log in</button>
+      </form>
+      <div id="authMsg" class="msg" role="status"></div>
+      <p class="muted" id="authNote">Use the email and password connected to your Goodvibes HQ member account.</p>
+    </div>
+  </div>
+</section>
+
+<section id="appView" class="hidden">
+  <div id="homeView">
+    <div class="card welcome"><div class="kicker">GOODVIBES HQ • START HERE</div><h2>Welcome, <span id="memberName">Builder</span> 👋</h2><p class="muted">Your first 7 days are about momentum, not perfection.</p></div>
+    <div class="card builder-dashboard">
+      <div class="kicker">GOODVIBES HQ • YOUR BUILDER DASHBOARD</div>
+      <h2 id="dashGreeting">Your next step is clear.</h2>
+      <div class="dashboard-grid">
+        <div class="dash-stat"><span class="dash-label">STAGE</span><strong id="dashStage">EXPLORER</strong><small id="dashStageText">Start building your foundation.</small></div>
+        <div class="dash-stat"><span class="dash-label">LAUNCH</span><strong id="dashLaunch">0/7</strong><small>7-Day Launch</small></div>
+        <div class="dash-stat"><span class="dash-label">BUILD</span><strong id="dashBuild">0/5</strong><small>Build Mode skills</small></div>
+        <div class="dash-stat"><span class="dash-label">WINS</span><strong id="dashWins">0</strong><small>Progress logged</small></div>
+      </div>
+      <div class="step"><strong>NEXT ACTION</strong><span id="dashNext">Start Day 1 — Discover Your WHY.</span></div>
+      <button type="button" class="btn primary" id="dashActionBtn">Take the next step →</button>
+      <div class="journey-strip"><div id="jLaunch" class="current">🚀 LAUNCH</div><div id="jBuild">🏗️ BUILD</div><div id="jLead">👑 LEAD</div><div id="jLegacy">🏛️ LEGACY</div></div>
+    </div>
+
+    <div class="progress" id="progress"><strong><span id="count">0</span> of 7 days complete</strong><div class="bar"><div class="fill" id="fill"></div></div><p class="muted" style="color:#dfe7e3;margin:10px 0 0">LEARN → COMPLETE → ACT → SHARE → REFLECT → PROGRESS</p></div>
+    <div class="card" id="continueCard"><div class="kicker">YOUR NEXT STEP</div><h2 id="continueTitle">Start Day 1</h2><p class="muted" id="continueText">Begin your first lesson and create momentum.</p><button type="button" class="btn primary" id="continueBtn">Start Day 1 →</button></div>
+
+    <div class="card">
+      <div class="kicker">EVENTS</div>
+      <h2>Something worth showing up for.</h2>
+      <div id="homeEvents"></div>
+    </div>
+
+    <div class="card" id="winsCard">
+      <div class="kicker">🏆 WINS & ACCOUNTABILITY</div>
+      <h2>Progress worth noticing.</h2>
+      <p class="muted">Wins aren't only sign-ups. Log the actions and milestones that show you're becoming a better builder.</p>
+      <div class="win-form">
+        <select id="winType">
+          <option value="Conversation">Started a conversation</option>
+          <option value="Presentation">Had a presentation</option>
+          <option value="Follow-up">Completed a follow-up</option>
+          <option value="Content">Published content</option>
+          <option value="Training">Completed training</option>
+          <option value="Customer">First customer</option>
+          <option value="Builder">First builder</option>
+          <option value="3-Way">Completed a 3-way</option>
+          <option value="Personal">Personal breakthrough</option>
+          <option value="Other">Other progress</option>
+        </select>
+        <input id="winText" type="text" maxlength="140" placeholder="What happened? e.g. Had my first genuine opportunity conversation.">
+        <button class="btn primary" id="addWinBtn" type="button">Log this win 🏆</button>
+      </div>
+      <div id="winsList"></div>
+    </div>
+
+    <div class="card"><div class="kicker">YOUR FIRST 7 DAYS</div><h2>Build momentum. One step at a time.</h2><div class="daygrid" id="days"></div></div>
+    <div id="lessonArea"></div>
+    <div id="buildTeaser" class="card hidden">
+      <div class="kicker">NEXT STAGE</div>
+      <h2 class="section-title">Build Mode</h2>
+      <p class="muted">You've completed the launch. Now turn what you've learned into a repeatable building rhythm.</p>
+      <button type="button" class="btn primary" id="openBuildBtn">Enter Build Mode →</button>
+    </div>
+  </div>
+
+
+  <div id="buildView" class="hidden">
+  <div class="card">
+    <div class="kicker">GOODVIBES HQ • BUILD MODE</div>
+    <h2 class="section-title">Now we build. 🏗️</h2>
+    <p class="muted">The 7-Day Launch gave you the foundation. Build Mode turns that foundation into repeatable skills, actions and habits.</p>
+    <div class="build-hero">
+      <div class="kicker">THE BUILDING RHYTHM</div>
+      <h2>FIND → CONNECT → DISCOVER → INVITE → BUILD</h2>
+      <p>Don't try to master everything at once. Pick the next skill, practise it, reflect, then repeat.</p>
+    </div>
+    <div class="progress" style="margin-top:14px">
+      <strong><span id="buildCount">0</span> of 5 skills practised</strong>
+      <div class="bar"><div class="fill" id="buildFill"></div></div>
+      <p class="muted" style="color:#dfe7e3;margin:10px 0 0">LEARN → PRACTISE → REFLECT → REPEAT</p>
+    </div>
+  </div>
+
+  <div class="card"><div class="kicker">01 • FIND</div><h2>Find Your People</h2><p class="muted">Identify people and communities where a genuine conversation could exist.</p><div class="step"><strong>LEARN</strong><span>Good prospecting is not about contacting everyone. Look for genuine relevance: existing relationships, shared interests, communities, life stages and reasons to reconnect.</span></div><div class="step"><strong>PRACTISE</strong><span>Choose 5 people from your Launch List. For each, note the genuine reason you could start a conversation.</span></div><textarea class="buildInput" data-build-input="find" placeholder="What patterns did you notice? Where are your strongest genuine connections?"></textarea><button class="btn primary buildCompleteBtn" data-build-complete="find" type="button">Mark FIND practised ✓</button></div>
+
+  <div class="card"><div class="kicker">02 • CONNECT</div><h2>Have Genuine Conversations</h2><p class="muted">Build rapport without turning every interaction into a pitch.</p><div class="step"><strong>LEARN</strong><span>Connection is a skill. Respond to what is actually happening in someone's world. Ask questions. Listen. Be interested without secretly steering every conversation toward an outcome.</span></div><div class="step"><strong>PRACTISE</strong><span>Start 3 genuine conversations this week. No pitch required. Your job is to practise being present and curious.</span></div><textarea class="buildInput" data-build-input="connect" placeholder="What did you learn from the conversations?"></textarea><button class="btn primary buildCompleteBtn" data-build-complete="connect" type="button">Mark CONNECT practised ✓</button></div>
+
+  <div class="card"><div class="kicker">03 • DISCOVER</div><h2>Understand What Matters</h2><p class="muted">Ask useful questions before deciding whether the opportunity is relevant.</p><div class="step"><strong>LEARN</strong><span>Discovery is about understanding, not interrogating. Explore what someone wants to change, create, protect or experience. Listen for goals, priorities, timing and willingness to learn.</span></div><div class="step"><strong>PRACTISE</strong><span>Use one open question in a real conversation, then listen instead of preparing your pitch.</span></div><textarea class="buildInput" data-build-input="discover" placeholder="What did the person actually tell you? What did you learn by listening?"></textarea><button class="btn primary buildCompleteBtn" data-build-complete="discover" type="button">Mark DISCOVER practised ✓</button></div>
+
+  <div class="card"><div class="kicker">04 • INVITE</div><h2>Offer the Right Next Step</h2><p class="muted">Invite rather than pressure. Give people enough context to choose what happens next.</p><div class="step"><strong>LEARN</strong><span>When there is genuine relevance, ask permission before sharing information. Match the resource to the person\'s stage: conversation, short video, fuller presentation or 3-way support. If there is no fit, respect that.</span></div><div class="step"><strong>PRACTISE</strong><span>Write one natural invitation in your own words. Keep it short and pressure-free.</span></div><textarea class="buildInput" data-build-input="invite" placeholder="Write your natural invitation."></textarea><button class="btn primary buildCompleteBtn" data-build-complete="invite" type="button">Mark INVITE practised ✓</button></div>
+
+  <div class="card"><div class="kicker">05 • BUILD</div><h2>Follow Up & Repeat</h2><p class="muted">Turn isolated activity into a simple rhythm of learning, action and improvement.</p><div class="step"><strong>LEARN</strong><span>Professional follow-up is about keeping commitments, checking in appropriately and helping someone take the next useful step. It is not repeated pressure.</span></div><div class="step"><strong>PRACTISE</strong><span>Choose three weekly actions that are measurable and realistic alongside your existing life.</span></div><div style="display:grid;gap:8px;margin-top:10px"><input class="buildAction" placeholder="Weekly action 1"><input class="buildAction" placeholder="Weekly action 2"><input class="buildAction" placeholder="Weekly action 3"></div><textarea class="buildInput" data-build-input="build" placeholder="Why are these three actions realistic for your current life?"></textarea><button class="btn primary buildCompleteBtn" data-build-complete="build" type="button">Mark BUILD practised ✓</button></div>
+
+  <div class="card"><div class="kicker">🏗️ BUILDER RHYTHM</div><h2>Your next week</h2><p class="muted">You don't need a perfect week. You need a repeatable one.</p><div class="step"><strong>MONDAY</strong><span>Choose your focus and identify your most important conversations.</span></div><div class="step"><strong>TUESDAY</strong><span>Conversation practice — use OCEDI.</span></div><div class="step"><strong>WEDNESDAY</strong><span>Complete one training lesson and practise the skill.</span></div><div class="step"><strong>THURSDAY</strong><span>Follow up with people who have asked for information or agreed to reconnect.</span></div><div class="step"><strong>FRIDAY</strong><span>Review wins, lessons and next actions.</span></div><div class="step"><strong>WEEKEND</strong><span>Travel, lifestyle, community and personal-brand content where it feels natural.</span></div></div>
+</div>
+
+  <div id="eventsView" class="hidden">
+    <div class="card">
+      <div class="kicker">GOODVIBES HQ • EVENTS</div>
+      <h2 class="section-title">Something worth showing up for.</h2>
+      <p class="muted">Meet-ups, small training sessions and selected business events will appear here when they are confirmed.</p>
+      <div id="eventsPageContent"></div>
+    </div>
+  </div>
+
+  <div id="toolsView" class="hidden">
+    <div class="card">
+      <div class="kicker">GOODVIBES HQ • TOOLS</div>
+      <h2 class="section-title">The right tool. The right moment. 🧰</h2>
+      <p class="muted">Don't send everything to everyone. Use the resource that matches the conversation and where the person is in their journey.</p>
+      <div class="build-hero">
+        <div class="kicker">RESOURCE RULE</div>
+        <h2>PEOPLE FIRST • OPPORTUNITY SECOND • HYPE NEVER</h2>
+        <p>Qualify the conversation first. Then choose the simplest useful resource.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🎥 OPPORTUNITY VIDEOS</div>
+      <h2>Video Toolkit</h2>
+      <p class="muted">Your video links can be added here without changing the Academy.</p>
+      <div class="tool-card">
+        <div><strong>⚡ SHORT OPPORTUNITY VIDEO</strong><p class="muted">For someone who is genuinely curious and wants a quick overview.</p></div>
+        <button class="btn secondary video-placeholder" type="button" data-video="short">Coming Soon</button>
+      </div>
+      <div class="tool-card">
+        <div><strong>🎬 FULL ~23-MINUTE OPPORTUNITY PRESENTATION</strong><p class="muted">For someone who has been qualified and has agreed to see the fuller explanation.</p></div>
+        <button class="btn secondary video-placeholder" type="button" data-video="long">Coming Soon</button>
+      </div>
+      <div class="tool-card">
+        <div><strong>📱 PERSONAL VIDEO</strong><p class="muted">A short video you record yourself to answer a specific question or continue a genuine conversation.</p></div>
+        <button class="btn secondary" type="button" data-tool-open="personalVideo">How to use →</button>
+      </div>
+      <div id="personalVideo" class="tool-detail hidden">
+        <strong>PERSONAL VIDEO FORMULA</strong>
+        <p>1. Mention what they actually asked or shared.<br>2. Give one clear answer.<br>3. Keep it short and human.<br>4. End with one simple next step.</p>
+        <p class="muted">Don't record a generic pitch and send it to everyone. Make the video relevant to the conversation.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🧭 WHICH RESOURCE?</div>
+      <h2>Quick Decision Guide</h2>
+      <div class="step"><strong>JUST CURIOUS</strong><span>Keep the conversation going. If they want a quick overview, use the <strong>Short Opportunity Video</strong>.</span></div>
+      <div class="step"><strong>GENUINELY INTERESTED</strong><span>They've asked questions, understand the basic idea and want fuller context → use the <strong>~23-minute presentation</strong>.</span></div>
+      <div class="step"><strong>HAS SPECIFIC QUESTIONS</strong><span>Answer the question yourself if you can, or use a <strong>Personal Video</strong> to explain it clearly.</span></div>
+      <div class="step"><strong>NEEDS EXTRA SUPPORT</strong><span>Use a <strong>3-Way Conversation</strong> when another builder/leader can genuinely add useful context.</span></div>
+      <div class="step"><strong>NOT INTERESTED / NOT A FIT</strong><span>Respect the answer. Keep the relationship intact. There is no need to force a next step.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">💬 CONVERSATION TOOLS</div>
+      <h2>OCEDI</h2>
+      <div class="ocedi-grid">
+        <div><strong>O</strong><span><b>OBSERVE</b><br>Notice something real.</span></div>
+        <div><strong>C</strong><span><b>CONNECT</b><br>Respond naturally.</span></div>
+        <div><strong>E</strong><span><b>EXPLORE</b><br>Ask a genuine question.</span></div>
+        <div><strong>D</strong><span><b>DISCOVER</b><br>Understand what matters.</span></div>
+        <div><strong>I</strong><span><b>INVITE</b><br>Offer the right next step.</span></div>
+      </div>
+      <button class="btn secondary" type="button" data-tool-open="ocediExamples">Open conversation examples →</button>
+      <div id="ocediExamples" class="tool-detail hidden">
+        <strong>EXAMPLE</strong>
+        <p><b>Observe:</b> “That place looks amazing.”<br>
+        <b>Connect:</b> “I've been meaning to try somewhere like that.”<br>
+        <b>Explore:</b> “What was it like?”<br>
+        <b>Discover:</b> “Do you travel much outside of work?”<br>
+        <b>Invite:</b> Only if the conversation reveals genuine relevance: “Would you be open to seeing what I'm building?”</p>
+        <p class="muted">The words will change. The principle stays the same: genuine conversation before opportunity.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🤝 3-WAY SUPPORT</div>
+      <h2>Don't try to answer everything yourself.</h2>
+      <div class="step"><strong>BEFORE</strong><span>Tell your support person who you're speaking with, what they've shared, what they've asked and what outcome the person agreed to.</span></div>
+      <div class="step"><strong>DURING</strong><span>Let the person speak. Your support person adds context. Avoid creating a pile-on or overwhelming the prospect.</span></div>
+      <div class="step"><strong>AFTER</strong><span>Thank the person, ask what they thought and agree the appropriate next step — if there is one.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">📱 SOCIAL MEDIA TOOLS</div>
+      <h2>Build your personal brand.</h2>
+      <div class="step"><strong>CONTENT</strong><span>Share your journey, travel, lessons, lifestyle, mindset and useful information. Don't make every post an advert.</span></div>
+      <div class="step"><strong>CONVERSATIONS</strong><span>Use Stories and posts as opportunities for genuine connection, not automated engagement bait.</span></div>
+      <div class="step"><strong>VIDEO</strong><span>Use short-form video to become more comfortable communicating your ideas in your own voice.</span></div>
+      <div class="step"><strong>TOOLS</strong><span>Canva • CapCut • your phone camera • Goodvibes HQ templates and prompts.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🔄 FOLLOW-UP</div>
+      <h2>Professional persistence.</h2>
+      <div class="step"><strong>AGREED FOLLOW-UP</strong><span>If someone says “I'll watch it tonight,” agree when you'll reconnect. Then keep the commitment.</span></div>
+      <div class="step"><strong>QUESTION FOLLOW-UP</strong><span>If they've asked a question, answer it or tell them when you'll get the answer. Don't disappear.</span></div>
+      <div class="step"><strong>NO RESPONSE</strong><span>Give people space. Follow up appropriately rather than sending repeated messages until they respond.</span></div>
+      <div class="step"><strong>NO</strong><span>A “no” is information. Respect it and move on without making the relationship uncomfortable.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">📋 COPY-READY PROMPTS</div>
+      <h2>Use these as starting points — not scripts.</h2>
+      <div class="prompt-box"><strong>SHORT VIDEO</strong><p>“Hey, based on what we were talking about, I thought this might give you a quick idea of what I've been building. Have a look when you get a chance and let me know what you think.”</p><button class="copyPrompt" type="button">Copy prompt</button></div>
+      <div class="prompt-box"><strong>FULL PRESENTATION</strong><p>“You've asked me a few questions about what I'm doing. I've got a longer presentation that explains the model properly. If you're genuinely open to looking at it, I'll send it over and we can talk afterwards.”</p><button class="copyPrompt" type="button">Copy prompt</button></div>
+      <div class="prompt-box"><strong>FOLLOW-UP</strong><p>“Hey, just checking in as promised. Did you get a chance to look at it? No pressure either way — I'm happy to answer any questions you have.”</p><button class="copyPrompt" type="button">Copy prompt</button></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🧠 BEFORE YOU SEND ANYTHING</div>
+      <h2>Ask yourself three questions.</h2>
+      <div class="step"><strong>1</strong><span>Have I actually had a conversation with this person?</span></div>
+      <div class="step"><strong>2</strong><span>Do I understand why this resource is relevant to them?</span></div>
+      <div class="step"><strong>3</strong><span>Have I given them enough context to make their own choice?</span></div>
+    </div>
+  </div>
+
+  <div id="journeyView" class="hidden">
+    <div class="card"><div class="kicker">YOUR JOURNEY</div><h2 class="section-title">Progress you can see.</h2><p class="muted">Every completed day is evidence that you moved forward.</p><div id="journeyChecklist"></div></div>
+  </div>
+
+  <div id="builder30View" class="hidden">
+    <div class="card">
+      <div class="kicker">GOODVIBES HQ • 30-DAY BUILDER SYSTEM</div>
+      <h2 class="section-title">Build your rhythm. Not your stress. 🏗️</h2>
+      <p class="muted">Your 30 days are a practice cycle. Choose actions you can repeat alongside your existing life. Consistency beats a heroic two-day sprint.</p>
+      <div class="build-hero">
+        <div class="kicker">THE WEEKLY SCOREBOARD</div>
+        <h2 id="scoreboardHeadline">0 actions logged</h2>
+        <p id="scoreboardText">Start with a few realistic actions. You can adjust them as you learn.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🎯 THIS WEEK'S FOCUS</div>
+      <h2>Choose what matters.</h2>
+      <div class="week-grid">
+        <label><span>💬 Conversations</span><input class="weeklyTarget" data-target="conversations" type="number" min="0" max="100" value="3"></label>
+        <label><span>🔄 Follow-ups</span><input class="weeklyTarget" data-target="followups" type="number" min="0" max="100" value="2"></label>
+        <label><span>📱 Content pieces</span><input class="weeklyTarget" data-target="content" type="number" min="0" max="100" value="2"></label>
+        <label><span>🧠 Training sessions</span><input class="weeklyTarget" data-target="training" type="number" min="0" max="30" value="1"></label>
+        <label><span>🎥 Presentations</span><input class="weeklyTarget" data-target="presentations" type="number" min="0" max="30" value="1"></label>
+      </div>
+      <button class="btn primary" id="saveTargetsBtn" type="button">Save my weekly focus ✓</button>
+    </div>
+
+    <div class="card">
+      <div class="kicker">📈 LOG REAL ACTIVITY</div>
+      <h2>What did you actually do?</h2>
+      <p class="muted">Log activity honestly. This is for learning and accountability, not comparison.</p>
+      <div class="activity-grid">
+        <button class="activityBtn" data-activity="conversations">💬 +1 Conversation</button>
+        <button class="activityBtn" data-activity="followups">🔄 +1 Follow-up</button>
+        <button class="activityBtn" data-activity="content">📱 +1 Content</button>
+        <button class="activityBtn" data-activity="training">🧠 +1 Training</button>
+        <button class="activityBtn" data-activity="presentations">🎥 +1 Presentation</button>
+      </div>
+      <div id="activityStatus" class="msg" role="status"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">📊 WEEKLY SCOREBOARD</div>
+      <div id="weeklyScoreboard"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🔄 WEEKLY REVIEW</div>
+      <h2>Five questions. Five minutes.</h2>
+      <textarea class="builderReview" data-review="win" placeholder="🏆 What was my biggest win this week?"></textarea>
+      <textarea class="builderReview" data-review="lesson" placeholder="🧠 What did I learn?"></textarea>
+      <textarea class="builderReview" data-review="improvement" placeholder="🔧 What will I improve?"></textarea>
+      <textarea class="builderReview" data-review="people" placeholder="🤝 Which conversations or relationships deserve attention?"></textarea>
+      <textarea class="builderReview" data-review="next" placeholder="📅 What are my three priorities for next week?"></textarea>
+      <button class="btn primary" id="saveWeeklyReviewBtn" type="button">Save weekly review ✓</button>
+      <div id="reviewStatus" class="msg" role="status"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">🏛️ 30-DAY RHYTHM</div>
+      <h2>Four simple cycles.</h2>
+      <div class="step"><strong>WEEK 1 • FOUNDATION</strong><span>Learn the system. Start conversations. Get comfortable taking action.</span></div>
+      <div class="step"><strong>WEEK 2 • CONSISTENCY</strong><span>Repeat the basics. Improve your conversations and follow-up.</span></div>
+      <div class="step"><strong>WEEK 3 • SKILL</strong><span>Practise presenting, content and discovery with more confidence.</span></div>
+      <div class="step"><strong>WEEK 4 • REVIEW</strong><span>Look at what you actually did. Keep what worked. Change what didn't. Set your next cycle.</span></div>
+    </div>
+  </div>
+
+  <div id="communityView" class="hidden">
+    <div class="card"><div class="kicker">GOODVIBES HQ • COMMUNITY</div><h2 class="section-title">You don't build alone.</h2><p class="muted">Community is where members connect, share progress, ask questions and support one another.</p><div class="step"><strong>WHATSAPP HQ</strong><span>Your community space will be connected here when the member community link is ready.</span></div></div>
+  </div>
+
+  <div id="academyView" class="hidden">
+  <div class="card">
+    <div class="kicker">GOODVIBES HQ • ACADEMY</div>
+    <h2 class="section-title">Learn it. Apply it. Become more capable. 🧠</h2>
+    <p class="muted">The Academy is not a library to binge. Complete the next useful lesson, take the action, then move forward.</p>
+    <div class="academy-hero">
+      <div class="kicker">YOUR DEVELOPMENT PATH</div>
+      <h2>LEARN → ACT → IMPROVE → REPEAT</h2>
+      <p>Start with the mindset. Build the skills. Develop your leadership. Then help someone else become more capable.</p>
+      <div class="academy-progress"><div id="academyProgressFill" class="academy-progress-fill"></div></div>
+      <p style="margin:9px 0 0"><strong><span id="academyProgressText">0/10</span> modules completed</strong></p>
+    </div>
+    <div class="pathway">
+      <div id="pathLaunch" class="current">7-DAY LAUNCH</div><div id="pathBuild">BUILD MODE</div><div id="pathLead">LEADERSHIP</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="kicker">10-MODULE CORE</div>
+    <div id="academyModules" class="academy-grid"></div>
+    <div id="academyDetail" class="academy-detail hidden"></div>
+  </div>
+</div>
+
+<div id="leadershipView" class="hidden">
+    <div class="lead-hero">
+      <div class="kicker">GOODVIBES HQ • LEADERSHIP</div>
+      <h2>Don't just build a team. Develop people.</h2>
+      <p>Leadership starts before a title. Learn to create clarity, coach with purpose, recognise progress and help people become more capable.</p>
+      <div class="step" style="background:rgba(255,255,255,.08);color:#fff"><strong>LEADERSHIP STANDARD</strong><span>Support people without creating dependence.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">YOUR LEADERSHIP DEVELOPMENT</div>
+      <h2 class="section-title">Leadership pathway</h2>
+      <p class="muted">Complete the four leadership practices below. This is development, not a permission gate.</p>
+      <div class="lead-stage">
+        <div class="lead-stat"><small>STAGE</small><strong id="leadStage">LEGACY ARCHITECT</strong><small id="leadStageText">Develop your leadership habits.</small></div>
+        <div class="lead-stat"><small>PROGRESS</small><strong id="leadProgressText">0/4</strong><div class="lead-progress"><div class="lead-progress-fill" id="leadProgressFill"></div></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">01 • LEADERSHIP READINESS</div>
+      <h2 class="section-title">Are you practising leadership?</h2>
+      <p class="muted">Check the behaviours you can honestly say you are practising.</p>
+      <div id="leadReadinessChecks">
+        <label class="lead-check"><input type="checkbox" class="leadReady" data-key="clarity"> <span>I give people a clear next step instead of overwhelming them.</span></label>
+        <label class="lead-check"><input type="checkbox" class="leadReady" data-key="support"> <span>I support people without doing their business for them.</span></label>
+        <label class="lead-check"><input type="checkbox" class="leadReady" data-key="standards"> <span>I communicate clearly, prepare properly and do what I say I will do.</span></label>
+        <label class="lead-check"><input type="checkbox" class="leadReady" data-key="progress"> <span>I celebrate activity, learning and progress — not only outcomes.</span></label>
+        <label class="lead-check"><input type="checkbox" class="leadReady" data-key="systems"> <span>I use systems and resources so the team does not depend on one person.</span></label>
+      </div>
+      <button class="btn primary" id="saveLeadReadiness" type="button">Save leadership check ✓</button>
+      <div id="leadReadinessMsg" class="msg" role="status"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">02 • COACH, DON'T CARRY</div>
+      <h2 class="section-title">The coaching ladder</h2>
+      <p class="muted">Use the support ladder before jumping straight into doing the work for someone.</p>
+      <div class="coach-row">
+        <div class="coach-box"><strong>LEVEL 1 • SELF-SERVE</strong><span>Academy, tools and approved information.</span></div>
+        <div class="coach-box"><strong>LEVEL 2 • TEAM SUPPORT</strong><span>Peer discussion, examples and shared learning.</span></div>
+        <div class="coach-box"><strong>LEVEL 3 • LEADER COACHING</strong><span>Bring a specific situation, question or decision that needs leadership input.</span></div>
+        <div class="coach-box"><strong>THE AIM</strong><span>Leave the person more capable than when the conversation started.</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">03 • 1-TO-1 COACHING</div>
+      <h2 class="section-title">Run a better coaching conversation.</h2>
+      <div class="step"><strong>ASK → LISTEN → CLARIFY → COACH → AGREE → FOLLOW UP</strong><span>Don't rush to solve. Understand first, then help the person identify their own next action.</span></div>
+      <div class="lead-form">
+        <label class="field"><strong>Who are you coaching?</strong><input id="coachPerson" placeholder="Name or private nickname"></label>
+        <label class="field"><strong>What is happening?</strong><textarea id="coachSituation" placeholder="Describe the situation without judgement."></textarea></label>
+        <label class="field"><strong>What does the person actually need?</strong><textarea id="coachNeed" placeholder="Clarity, encouragement, skill coaching, accountability, resources…"></textarea></label>
+        <label class="field"><strong>What is their next action?</strong><textarea id="coachNext" placeholder="One clear action they own. Keep it specific."></textarea></label>
+        <button class="btn secondary" id="saveCoachBtn" type="button">Save coaching note</button>
+        <div id="coachMsg" class="msg" role="status"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">04 • TRAFFIC-LIGHT TEAM CHECK-IN</div>
+      <h2 class="section-title">Know where your people are.</h2>
+      <p class="muted">This is a coaching tool, not a ranking system. Use it to decide what kind of support is appropriate.</p>
+      <div class="lead-form">
+        <input id="teamPerson" placeholder="Person / private nickname">
+        <div class="lead-actions" style="margin-top:9px">
+          <button type="button" data-light="green">🟢 GREEN — progressing</button>
+          <button type="button" data-light="amber">🟠 AMBER — needs support</button>
+          <button type="button" data-light="red">🔴 RED — needs a human conversation</button>
+          <button type="button" data-light="clear">Clear selection</button>
+        </div>
+        <textarea id="teamNote" style="margin-top:9px" placeholder="What does this person need next? Keep notes factual and useful."></textarea>
+        <button class="btn primary" id="saveTeamCheckBtn" type="button" style="margin-top:9px">Save team check-in</button>
+        <div id="teamCheckMsg" class="msg" role="status"></div>
+      </div>
+      <div id="teamCheckList"></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">LEADER WEEKLY CHECK-IN</div>
+      <h2 class="section-title">Five questions before the week starts.</h2>
+      <div class="step"><strong>WHO NEEDS CLARITY?</strong><span>Is anyone unsure about their next step?</span></div>
+      <div class="step"><strong>WHO NEEDS ENCOURAGEMENT?</strong><span>Who has made progress that should be recognised?</span></div>
+      <div class="step"><strong>WHO NEEDS SKILL COACHING?</strong><span>What specific skill would unlock their next step?</span></div>
+      <div class="step"><strong>WHO HAS SHOWN BUILDER BEHAVIOUR?</strong><span>Look for consistency, learning, action and ownership.</span></div>
+      <div class="step"><strong>WHAT CAN WE SIMPLIFY?</strong><span>If the same question keeps appearing, improve the system or teach it once for everyone.</span></div>
+    </div>
+
+    <div class="card">
+      <div class="kicker">LEGACY LEADER</div>
+      <h2 class="section-title">The next level isn't more control.</h2>
+      <p class="muted">A Legacy Leader develops people who can eventually teach, coach and lead others. The goal isn't to build people who need you forever. It's to build people who can lead.</p>
+      <div class="step"><strong>DO IT → LEARN IT → PRACTISE IT → TEACH IT → COACH IT → LEAD IT</strong><span>Leadership becomes duplicatable when the skill can move from one person to another.</span></div>
+    </div>
+  </div>
+
+  <div class="card"><button class="btn secondary" id="logout" type="button">Log out</button></div>
+  <div class="app-footer">GOODVIBES HQ • Member System • People First • Opportunity Second • Hype Never</div>
+</section>
+</main>
+
+<nav id="bottomNav" class="hidden" aria-label="Main navigation">
+  <button type="button" data-view="homeView"><strong>⌂</strong>Home</button>
+  <button type="button" data-view="academyView"><strong>🧠</strong>Academy</button>
+  <button type="button" id="buildNavBtn"><strong>🏗️</strong>Build</button>
+  <button type="button" data-view="builder30View"><strong>📊</strong>30 Days</button>
+  <button type="button" data-view="leadershipView"><strong>👑</strong>Leadership</button>
+  <button type="button" id="moreNavBtn"><strong>☰</strong>More</button>
+</nav>
+
+
+<div id="moreSheet" class="more-sheet hidden" aria-hidden="true">
+  <div class="more-panel">
+    <div class="more-head"><h3>More Goodvibes HQ</h3><button class="more-close" id="closeMoreBtn" type="button">Close</button></div>
+    <div class="more-grid">
+      <button class="more-item" data-more-view="homeView" data-more-scroll="days" type="button"><strong>🚀</strong>7-Day Launch<small>Complete your first-week foundation.</small></button>
+      <button class="more-item" data-more-view="eventsView" type="button"><strong>📅</strong>Events<small>Meet-ups, training and selected events.</small></button>
+      <button class="more-item" data-more-view="toolsView" type="button"><strong>🧰</strong>Tools<small>Use the right resource at the right moment.</small></button>
+      <button class="more-item" data-more-view="journeyView" type="button"><strong>🧭</strong>Journey<small>See the bigger development pathway.</small></button>
+      <button class="more-item" data-more-view="communityView" type="button"><strong>💬</strong>Community<small>Connection, support and accountability.</small></button>
+    </div>
+  </div>
+</div>
+<script>
+const SUPABASE_URL='https://wssyoqpzejufxarxpjxo.supabase.co';
+const SUPABASE_KEY='sb_publishable_EvK7VlO1hz-ZZ7N5HFSYug_MuT1ymSA';
+let sb=null;
+if(window.supabase && window.supabase.createClient){
+  sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+}else{
+  document.addEventListener('DOMContentLoaded',()=>{
+    const btn=document.getElementById('submitBtn');
+    if(btn)btn.disabled=true;
+    const el=document.getElementById('authMsg');
+    if(el){
+      el.textContent='Goodvibes HQ could not load its secure connection. Please refresh the page and try again.';
+      el.className='msg show error';
+    }
+  });
+}
+const APP_URL='https://goodvibeshqapp.github.io/GoodvibesHQ-/';
+const fallback=[
+ {day:1,time:'5 min',title:'Discover Your WHY',summary:'Purpose before pressure. Get clear on what you want to change, create or protect — and why it matters enough to keep building.',teaching:'Your why is not a slogan. It is the reason behind the effort. It can connect to family, freedom, healing, dreams, survival, contribution or legacy. A clear purpose gives you something to return to when motivation drops, progress feels slow or fear gets loud.',question:'What do I want to change or create — and who matters most in the future I am building?',action:'Write your WHY in one honest sentence beginning: “I am building because…” Then add one sentence about who or what that future is for.'},
+ {day:2,time:'7 min',title:'Become a Legacy Architect',summary:'Move from having an opportunity to intentionally deciding what you are building — and who you are becoming.',teaching:'A Legacy Architect is someone who intentionally designs a better future for themselves and the people they care about, then develops the mindset, skills and discipline to build it. Identity influences action, repeated action shapes results. You do not wait for results before practising the identity you want to become.',question:'Who do I need to become to build what I described yesterday? What would that person practise consistently?',action:'Complete this sentence: “I am becoming someone who…” Then choose one behaviour that person would practise this week — and do it.'},
+ {day:3,time:'15 min',title:'Make It Real — Launch / Relaunch',summary:'A real launch is more than a post. It is the moment you start operating like someone building a professional career.',teaching:'A launch is not about making noise for one day. It is about making your journey real: creating your conversation list, starting genuine conversations, learning the skills and building a repeatable rhythm. Treat this as a career and a skill-building journey, not a quick hit. You do not need to quit your job or have everything figured out. Start alongside your existing life, learn the skills, practise them and improve.',question:'Who are the people I could genuinely reconnect with, and what kind of future am I willing to build by learning these skills consistently?',action:'Build your Launch List: write down a minimum of 10 people you could genuinely have a conversation with. There is no maximum. Include people you know, people you have met, old colleagues, friends, family, customers, followers or communities where a real conversation makes sense. Your list is not a hit list — it is a map of people and possible conversations. Then choose 5 people and complete the DMO Action Task: reply to something they have genuinely shared and ask a real question. No random emojis, no fake engagement and no hidden pitch. Connection first. Conversation second. Opportunity later.'},
+ {day:4,time:'15 min',title:'Find Your People',summary:'Learn how to recognise people where a genuine conversation could make sense — without treating your network like a hit list.',teaching:'Your Launch List is not a list of people you need to sell. It is a starting point for learning who is already connected to you, what matters to them and where a genuine conversation may exist. Not everyone needs what you are building, and that is okay. Your job is not to convince everyone. Your job is to recognise potential fit and communicate like a real person.',question:'Instead of asking “Who can I sell this to?”, ask “Who might genuinely benefit from knowing this exists?” What changes when you think about people that way?',action:'Return to your Launch List and choose 5 people. For each person, write: 1) What do I already know about them? 2) What are they interested in? 3) What are they currently doing? 4) What matters to them? 5) Why would a conversation be natural? Then complete the mini challenge: write one sentence for each person — “I could genuinely start a conversation with ___ about ___ because…” Start one natural conversation. No presentation, no business pitch and no copy-and-paste script. Practise your people skills.'},
+ {day:5,time:'15 min',title:'Start Real Conversations — OCEDI',summary:'Turn genuine connection into better conversations without rushing to the pitch.',teaching:'OCEDI gives you a simple conversation rhythm: Observe → Connect → Explore → Discover → Invite. Observe something real. Connect naturally. Explore with a genuine question. Discover what matters to the person. Invite only when there is a relevant next step. The framework is not a script or a trick. It helps you stay curious, human and purposeful.',question:'What would change if your goal was to understand the person before deciding whether there is an opportunity to share?',action:'Complete the OCEDI practice below. Then use the same rhythm in one real conversation today. Do not force the opportunity.'},
+ {day:6,time:'15 min',title:'Show the Opportunity',summary:'Learn how to offer the next step clearly, professionally and without pressure.',teaching:'Once you have listened and established that the opportunity is relevant, your job is to make the next step clear. Use the resource that matches the person and the stage of the conversation. A short video can introduce the concept. A longer presentation can provide fuller context. A 3-way conversation can add support when appropriate. Give people space to make their own informed decision.',question:'What information does this person actually need next — and what is the simplest useful way to give it?',action:'Complete the Opportunity Resource Practice below. Choose the appropriate resource for each scenario and write the message you would send before sharing it. Keep it natural, concise and pressure-free.'},
+ {day:7,time:'15 min',title:'Review & Move Forward',summary:'Turn the first seven days into a repeatable 30-day rhythm.',teaching:'Progress is not measured only by outcomes. Review what you actually did, what you learned and what you can improve. Keep what worked. Change what did not. Your first seven days are the beginning of a professional skill-building journey, not a finish line.',question:'What worked, what did I learn, what will I improve and what three actions will I repeat over the next 30 days?',action:'Complete the 7-Day Review below. Record one win, one lesson, one improvement and your next three practical actions. Put those actions into a weekly rhythm you can actually sustain.'}
+];
+let missions=[], progress={}, currentDay=1, signup=false, resetMode=false, recoveryMode=false;
+const $=id=>document.getElementById(id);
+
+function authMsg(text,type=''){
+  const el=$('authMsg');
+  if(!el)return;
+  el.textContent=text;
+  el.className='msg show '+type;
+}
+function clearAuthMsg(){
+  const el=$('authMsg');
+  if(!el)return;
+  el.textContent='';
+  el.className='msg';
+}
+
+function setActiveTab(isSignup){
+  signup=isSignup;
+  resetMode=false;
+  recoveryMode=false;
+  $('signupTab').classList.toggle('active',isSignup);
+  $('loginTab').classList.toggle('active',!isSignup);
+  $('nameField').classList.toggle('hidden',!isSignup);
+  $('password').classList.remove('hidden');
+  if($('newPassword'))$('newPassword').classList.add('hidden');
+  if($('confirmPassword'))$('confirmPassword').classList.add('hidden');
+  $('password').required=true;
+  $('submitBtn').type='submit';
+  $('submitBtn').onclick=null;
+  $('submitBtn').textContent=isSignup?'Create my account':'Log in';
+  $('password').autocomplete=isSignup?'new-password':'current-password';
+  $('authNote').textContent=isSignup
+    ? 'Create your member login. You may need to confirm your email before logging in.'
+    : 'Use the email and password connected to your Goodvibes HQ member account.';
+  $('forgotBtn').textContent='Forgot password?';
+  $('forgotBtn').classList.remove('hidden');
+  clearAuthMsg();
+}
+
+function setResetMode(){
+  resetMode=true;
+  recoveryMode=false;
+  $('loginTab').classList.remove('active');
+  $('signupTab').classList.remove('active');
+  $('nameField').classList.add('hidden');
+  $('password').classList.add('hidden');
+  $('password').required=false;
+  $('submitBtn').textContent='Send reset link';
+  $('authNote').textContent='Enter your email and we’ll send you a secure password reset link.';
+  $('forgotBtn').textContent='Back to log in';
+  clearAuthMsg();
+  $('email').focus();
+}
+
+function showRecoveryForm(){
+  recoveryMode=true;
+  resetMode=false;
+  $('loginTab').classList.remove('active');
+  $('signupTab').classList.remove('active');
+  $('nameField').classList.add('hidden');
+  $('email').classList.add('hidden');
+  $('email').required=false;
+  $('password').classList.add('hidden');
+  $('password').required=false;
+  let field=$('newPassword');
+  if(!field){
+    field=document.createElement('input');
+    field.id='newPassword';
+    field.type='password';
+    field.placeholder='New password';
+    field.setAttribute('aria-label','New password');
+    field.minLength=6;
+    field.required=true;
+    $('password').parentElement.insertBefore(field,$('password').nextSibling);
+  }
+  field.classList.remove('hidden');
+  let confirm=$('confirmPassword');
+  if(!confirm){
+    confirm=document.createElement('input');
+    confirm.id='confirmPassword';
+    confirm.type='password';
+    confirm.placeholder='Confirm new password';
+    confirm.setAttribute('aria-label','Confirm new password');
+    confirm.minLength=6;
+    confirm.required=true;
+    field.parentElement.insertBefore(confirm,field.nextSibling);
+  }
+  confirm.classList.remove('hidden');
+  $('submitBtn').textContent='Update password';
+  $('submitBtn').type='button';
+  $('authNote').textContent='Choose a new password for your Goodvibes HQ account.';
+  $('forgotBtn').classList.add('hidden');
+  clearAuthMsg();
+
+  // Bind the recovery action directly to the visible button.
+  const recoveryBtn=$('submitBtn');
+  recoveryBtn.onclick=async()=>{
+    const newPassword=$('newPassword').value;
+    const confirmPassword=$('confirmPassword').value;
+    recoveryBtn.disabled=true;
+    clearAuthMsg();
+    try{
+      if(!newPassword || newPassword.length<6)throw new Error('Your new password must be at least 6 characters.');
+      if(newPassword!==confirmPassword)throw new Error('Your passwords do not match.');
+      const result=await sb.auth.updateUser({password:newPassword});
+      if(result.error)throw result.error;
+      authMsg('Password updated successfully. You can now log in.','success');
+      await sb.auth.signOut();
+      recoveryMode=false;
+      resetMode=false;
+      setTimeout(()=>setActiveTab(false),500);
+    }catch(err){
+      authMsg(err.message||'We could not update your password. Please request a new reset link and try again.','error');
+    }finally{
+      recoveryBtn.disabled=false;
+    }
+  };
+
+  field.focus();
+}
+
+$('loginTab').addEventListener('click',()=>setActiveTab(false));
+$('signupTab').addEventListener('click',()=>setActiveTab(true));
+$('forgotBtn').addEventListener('click',()=>{
+  if(resetMode){setActiveTab(false)}else{setResetMode()}
+});
+
+$('authForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  clearAuthMsg();
+  const btn=$('submitBtn');
+  btn.disabled=true;
+  try{
+    if(!window.supabase || !sb){
+      throw new Error('Goodvibes HQ is still loading. Please refresh the page and try again.');
+    }
+
+    if(recoveryMode){
+      const newPassword=$('newPassword').value;
+      const confirmPassword=$('confirmPassword')?.value||'';
+      if(newPassword.length<6)throw new Error('Your new password must be at least 6 characters.');
+      if(confirmPassword && newPassword!==confirmPassword)throw new Error('Your passwords do not match.');
+      const r=await sb.auth.updateUser({password:newPassword});
+      if(r.error)throw r.error;
+      authMsg('Password updated successfully. You can now log in.','success');
+      setTimeout(async()=>{await sb.auth.signOut();setActiveTab(false)},1200);
+      return;
+    }
+
+    const email=$('email').value.trim();
+    const password=$('password').value;
+    if(!email)throw new Error('Please enter your email address.');
+
+    if(resetMode){
+      const r=await sb.auth.resetPasswordForEmail(email,{redirectTo:APP_URL+'?reset=1'});
+      if(r.error)throw r.error;
+      authMsg('Reset link sent. Check your email and follow the secure link to create a new password.','success');
+      return;
+    }
+
+    const name=$('name').value.trim();
+    if(signup){
+      if(!name){authMsg('Please enter your name.','error');return}
+      if(password.length<6){authMsg('Your password must be at least 6 characters.','error');return}
+      const r=await sb.auth.signUp({email,password,options:{data:{full_name:name},emailRedirectTo:APP_URL}});
+      if(r.error)throw r.error;
+      if(r.data.session){await startApp(r.data.user)}
+      else authMsg('Account created. Check your email for the confirmation link, then return here and log in.','success');
+    }else{
+      if(!password){authMsg('Please enter your password.','error');return}
+      const r=await sb.auth.signInWithPassword({email,password});
+      if(r.error)throw r.error;
+      await startApp(r.data.user);
+    }
+  }catch(err){
+    authMsg(err.message||'Something went wrong.','error');
+  }finally{
+    btn.disabled=false;
+  }
+});
+
+async function startApp(user){
+ window.goodvibesUserId=user.id;
+ $('authView').classList.add('hidden');$('appView').classList.remove('hidden');$('bottomNav').classList.remove('hidden');
+ let name=user.user_metadata?.full_name||user.email?.split('@')[0]||'Builder';
+ try{const p=await sb.from('profiles').select('full_name').eq('id',user.id).maybeSingle();if(p.data?.full_name)name=p.data.full_name}catch(e){}
+ $('memberName').textContent=name;await loadData(user.id);loadLeadership();renderAcademy();showView('homeView');
+}
+
+async function loadEvents(){
+  const home = $('homeEvents');
+  const page = $('eventsPageContent');
+  const empty = `<div class="event-empty"><div class="event-icon">📅</div><strong>Coming Soon</strong><p class="muted">Goodvibes HQ monthly meet-ups, training sessions and selected business events are being prepared. Details will appear here when they’re confirmed.</p><div class="step"><strong>MONTHLY GOODVIBES HQ MEET-UP</strong><span>In person or online — details coming soon.</span></div></div>`;
+  try{
+    const r=await sb.from('events').select('*').eq('active',true).order('event_date',{ascending:true});
+    if(r.error)throw r.error;
+    const events=(r.data||[]).filter(e=>new Date(e.event_date+'T23:59:59')>=new Date());
+    if(!events.length){home.innerHTML=empty;page.innerHTML=empty;return;}
+    const cards=events.map(e=>{
+      const date=new Date(e.event_date+'T12:00:00');
+      const dateText=date.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+      const meta=[e.region,e.format,e.category].filter(Boolean).join(' • ');
+      return `<div class="event-card"><div class="event-date">${escapeHtml(dateText)}${e.event_time?' • '+escapeHtml(e.event_time):''}</div><h3>${escapeHtml(e.title)}</h3><p class="muted">${escapeHtml(e.description||'')}</p><div class="event-meta">${escapeHtml(meta)}</div>${e.location?`<div class="muted">📍 ${escapeHtml(e.location)}</div>`:''}${e.booking_url?`<a class="btn primary event-link" href="${escapeHtml(e.booking_url)}" target="_blank" rel="noopener">View Event →</a>`:''}</div>`;
+    }).join('');
+    home.innerHTML=cards.split('</div>').slice(0,3).map(x=>x+'</div>').join('');
+    page.innerHTML=cards;
+  }catch(err){
+    home.innerHTML=empty;
+    page.innerHTML=empty;
+  }
+}
+
+async function loadData(uid){
+ const r=await sb.from('missions').select('*').order('day',{ascending:true});
+ missions=r.data?.length?r.data.slice(0,7).map((x,i)=>{const f=fallback[i];return {
+  id:x.id, day:x.day||f.day,
+  title:x.title||f.title,
+  time:f.time,
+  summary:f.summary,
+  teaching:(x.description&&x.description.trim())||f.teaching,
+  question:f.question,
+  action:(x.action&&x.action.trim())||f.action
+}}):fallback.map(x=>({id:null,...x}));
+ if(!missions.length)missions=fallback;
+ const pr=await sb.from('member_progress').select('*').eq('member_id',uid);progress={};
+ (pr.data||[]).forEach(x=>progress[x.day]={complete:!!x.completed,reflection:x.reflection||''});
+ renderDays();renderJourney();updateBuildMode();openDay(firstAvailableDay());
+}
+function firstAvailableDay(){for(let d=1;d<=7;d++){if(!progress[d]?.complete)return d}return 8}
+function updateBuildMode(){
+  const complete=Object.values(progress).filter(x=>x.complete).length;
+  const teaser=$('buildTeaser');
+  if(teaser)teaser.classList.toggle('hidden',complete<7);
+}
+function showBuildMode(){renderDashboard();
+  ['homeView','academyView','eventsView','toolsView','buildView','builder30View','journeyView','communityView','leadershipView'].forEach(id=>$(id)?.classList.toggle('hidden',id!=='buildView'));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  $('buildNavBtn')?.classList.add('active');closeMore();window.scrollTo({top:0,behavior:'smooth'});
+}
+function buildStorageKey(){return 'goodvibes_build_v10_'+(window.goodvibesUserId||'member');}
+function renderBuildProgress(){
+ const state=JSON.parse(localStorage.getItem(buildStorageKey())||'{}');
+ const skills=['find','connect','discover','invite','build'];
+ const done=skills.filter(k=>state[k]?.complete).length;
+ if($('buildCount'))$('buildCount').textContent=done;
+ if($('buildFill'))$('buildFill').style.width=(done/5*100)+'%';
+ document.querySelectorAll('.buildCompleteBtn').forEach(btn=>{
+   const k=btn.dataset.buildComplete;
+   btn.textContent=state[k]?.complete?'Practised ✓':'Mark '+k.toUpperCase()+' practised ✓';
+ });
+ renderDashboard();
+}
+document.querySelectorAll('.buildCompleteBtn').forEach(btn=>btn.addEventListener('click',()=>{
+ const k=btn.dataset.buildComplete;
+ const input=document.querySelector(`[data-build-input="${k}"]`);
+ const actions=[...document.querySelectorAll('.buildAction')];
+ if(input&&!input.value.trim()){input.focus();alert('Add a short reflection before marking this skill practised.');return;}
+ if(k==='build' && actions.some(x=>!x.value.trim())){actions.find(x=>!x.value.trim()).focus();alert('Add your three weekly actions first.');return;}
+ const state=JSON.parse(localStorage.getItem(buildStorageKey())||'{}');
+ state[k]={complete:true,completedAt:new Date().toISOString(),reflection:input?.value.trim()||'',weeklyActions:k==='build'?actions.map(x=>x.value.trim()):[]};
+ localStorage.setItem(buildStorageKey(),JSON.stringify(state));
+ renderBuildProgress();
+}));
+renderBuildProgress();
+
+
+document.querySelectorAll('[data-tool-open]').forEach(btn=>btn.addEventListener('click',()=>{
+ const el=$(btn.dataset.toolOpen);if(!el)return;
+ el.classList.toggle('hidden');
+ btn.textContent=el.classList.contains('hidden')?'Open →':'Close ↑';
+}));
+document.querySelectorAll('.copyPrompt').forEach(btn=>btn.addEventListener('click',async()=>{
+ const p=btn.parentElement.querySelector('p');
+ try{await navigator.clipboard.writeText(p.textContent.trim());btn.textContent='Copied ✓';setTimeout(()=>btn.textContent='Copy prompt',1500);}
+ catch(e){btn.textContent='Select & copy';}
+}));
+document.querySelectorAll('.video-placeholder').forEach(btn=>btn.addEventListener('click',()=>{
+ alert('This video is not connected yet. When Warren’s video is ready, its link will be added here.');
+}));
+
+
+function userStorageKey(name){return 'goodvibes_'+name+'_'+(window.goodvibesUserId||'member');}
+function getWins(){try{return JSON.parse(localStorage.getItem(userStorageKey('wins'))||'[]')}catch(e){return[]}}
+function renderWins(){
+ const list=$('winsList');if(!list)return;
+ const wins=getWins();
+ if(!wins.length){list.innerHTML='<div class="win-empty">No wins logged yet. Your first win can be completing your first lesson. 🏆</div>';return;}
+ list.innerHTML=wins.slice(0,5).map(w=>`<div class="win-item"><div class="win-badge">🏆</div><div><strong>${escapeHtml(w.type)}</strong><span>${escapeHtml(w.text)}</span><small>${escapeHtml(new Date(w.createdAt).toLocaleDateString('en-GB',{day:'numeric',month:'short'}))}</small></div></div>`).join('');
+}
+function renderDashboard(){
+ const launch=Object.values(progress).filter(x=>x.complete).length;
+ let build={};try{build=JSON.parse(localStorage.getItem(userStorageKey('build_v10'))||'{}')}catch(e){}
+ const skills=['find','connect','discover','invite','build'];
+ const built=skills.filter(k=>build[k]?.complete).length;
+ const wins=getWins();
+ if($('dashLaunch'))$('dashLaunch').textContent=launch+'/7';
+ if($('dashBuild'))$('dashBuild').textContent=built+'/5';
+ if($('dashWins'))$('dashWins').textContent=wins.length;
+ let stage='EXPLORER',stageText='Start building your foundation.',next='Start Day 1 — Discover Your WHY.',target=1;
+ if(launch<7){stage=launch>=3?'LEGACY ARCHITECT':'EXPLORER';stageText=launch>=3?'You are turning intention into action.':'Start building your foundation.';const n=firstAvailableDay();const m=missions[n-1]||fallback[n-1];next='Day '+n+' — '+m.title+'.';target=n;}
+ else if(built<5){stage='LEGACY ARCHITECT';stageText='Your launch is complete. Build the skills.';next='Build Mode — practise the next skill.';target='build';}
+ else {stage='LEGACY ARCHITECT';stageText='Five core building skills practised. Keep developing.';next='Review your weekly rhythm and keep building.';target='build';}
+ if($('dashStage'))$('dashStage').textContent=stage;
+ const jp={launch:launchDone<7,build:buildDone<5,lead:leadDone<4};
+ document.querySelectorAll('.journey-strip div').forEach(x=>x.classList.remove('current'));
+ if(launchDone<7)$('jLaunch')?.classList.add('current');else if(buildDone<5)$('jBuild')?.classList.add('current');else if(leadDone<4)$('jLead')?.classList.add('current');else $('jLegacy')?.classList.add('current');
+ if($('dashStageText'))$('dashStageText').textContent=stageText;
+ if($('dashNext'))$('dashNext').textContent=next;
+ const btn=$('dashActionBtn');
+ if(btn){btn.onclick=()=>{if(target==='build')showBuildMode();else{showView('homeView','days');setTimeout(()=>openDay(target),120)}}}
+}
+$('addWinBtn')?.addEventListener('click',()=>{
+ const type=$('winType').value,text=$('winText').value.trim();if(!text){$('winText').focus();return;}
+ const wins=getWins();wins.unshift({type,text,createdAt:new Date().toISOString()});localStorage.setItem(userStorageKey('wins'),JSON.stringify(wins.slice(0,50)));$('winText').value='';renderWins();renderDashboard();
+});
+renderWins();
+
+
+function builder30Key(){return userStorageKey('builder30');}
+function getBuilder30(){try{return JSON.parse(localStorage.getItem(builder30Key())||'{}')}catch(e){return{}}}
+function renderBuilder30(){
+ const s=getBuilder30(),targets=s.targets||{conversations:3,followups:2,content:2,training:1,presentations:1},a=s.activity||{};
+ document.querySelectorAll('.weeklyTarget').forEach(x=>x.value=targets[x.dataset.target]??0);
+ const labels={conversations:'💬 Conversations',followups:'🔄 Follow-ups',content:'📱 Content',training:'🧠 Training',presentations:'🎥 Presentations'};
+ let total=0;
+ const rows=Object.keys(labels).map(k=>{const v=Number(a[k]||0),t=Number(targets[k]||0),pct=t?Math.min(100,Math.round(v/t*100)):0;total+=v;return `<div class="score-row"><div class="score-line"><strong>${labels[k]}</strong><span>${v} / ${t}</span></div><div class="score-bar"><div class="score-fill" style="width:${pct}%"></div></div></div>`}).join('');
+ if($('weeklyScoreboard'))$('weeklyScoreboard').innerHTML=rows;
+ if($('scoreboardHeadline'))$('scoreboardHeadline').textContent=total+' action'+(total===1?'':'s')+' logged';
+ if($('scoreboardText'))$('scoreboardText').textContent=total?'Keep the rhythm realistic and repeatable.':'Start with a few realistic actions. You can adjust them as you learn.';
+}
+document.querySelectorAll('.weeklyTarget').forEach(x=>x.addEventListener('change',()=>{
+ const s=getBuilder30();s.targets=s.targets||{};s.targets[x.dataset.target]=Math.max(0,Number(x.value||0));localStorage.setItem(builder30Key(),JSON.stringify(s));renderBuilder30();
+}));
+$('saveTargetsBtn')?.addEventListener('click',()=>{const s=getBuilder30();s.targets={};document.querySelectorAll('.weeklyTarget').forEach(x=>s.targets[x.dataset.target]=Math.max(0,Number(x.value||0)));localStorage.setItem(builder30Key(),JSON.stringify(s));renderBuilder30();$('activityStatus').textContent='Weekly focus saved ✓';$('activityStatus').className='msg show';});
+document.querySelectorAll('.activityBtn').forEach(btn=>btn.addEventListener('click',()=>{
+ const s=getBuilder30();s.activity=s.activity||{};s.activity[btn.dataset.activity]=Number(s.activity[btn.dataset.activity]||0)+1;localStorage.setItem(builder30Key(),JSON.stringify(s));renderBuilder30();$('activityStatus').textContent=btn.textContent+' logged ✓';$('activityStatus').className='msg show';
+}));
+$('saveWeeklyReviewBtn')?.addEventListener('click',()=>{
+ const s=getBuilder30();s.reviews=s.reviews||{};document.querySelectorAll('.builderReview').forEach(x=>s.reviews[x.dataset.review]=x.value.trim());s.reviews.updatedAt=new Date().toISOString();localStorage.setItem(builder30Key(),JSON.stringify(s));$('reviewStatus').textContent='Weekly review saved ✓';$('reviewStatus').className='msg show';
+});
+renderBuilder30();
+
+function renderDays(){
+ renderDashboard();
+ const complete=Object.values(progress).filter(x=>x.complete).length;$('count').textContent=complete;$('fill').style.width=(complete/7*100)+'%';
+ $('days').innerHTML=missions.slice(0,7).map((m,i)=>{const d=i+1,done=!!progress[d]?.complete,locked=d>1&&!progress[d-1]?.complete;return `<button type="button" class="day ${done?'done':''} ${locked?'locked':''} ${d===currentDay?'active':''}" data-day="${d}" ${locked?'disabled':''}><small>DAY ${d}</small><b>${escapeHtml(m.title)}</b><span class="status">${done?'✓ Complete':locked?'Locked':'Start lesson →'}</span></button>`}).join('');
+const nextDay=firstAvailableDay();
+const nextMission=nextDay<=7?(missions[nextDay-1]||fallback[nextDay-1]):null;
+if(nextMission){
+ $('continueTitle').textContent=`Day ${nextDay}: ${nextMission.title}`;
+ $('continueText').textContent=nextDay===1?'Begin your first lesson and create momentum.':'Continue from where you left off. One useful step at a time.';
+ $('continueBtn').textContent=`${nextDay===1?'Start':'Continue'} Day ${nextDay} →`;
+ $('continueBtn').disabled=false;
+ $('continueBtn').onclick=()=>openDay(nextDay);
+}else{
+ $('continueTitle').textContent='7-Day Launch complete';
+ $('continueText').textContent='You finished the launch. Your next stage is Build Mode.';
+ $('continueBtn').textContent='Launch complete ✓';
+ $('continueBtn').disabled=true;
+}
+ document.querySelectorAll('[data-day]').forEach(el=>el.addEventListener('click',()=>openDay(Number(el.dataset.day))));
+}
+
+function renderJourney(){
+ $('journeyChecklist').innerHTML=missions.slice(0,7).map((m,i)=>{const d=i+1,done=!!progress[d]?.complete;return `<div class="check"><div class="checkmark ${done?'done':''}">${done?'✓':d}</div><div><strong>Day ${d}: ${escapeHtml(m.title)}</strong><div class="muted">${done?'Completed':'Not completed yet'}</div></div></div>`}).join('');
+}
+function openDay(d){if(d>1&&!progress[d-1]?.complete)return;currentDay=d;renderDays();const m=missions[d-1]||fallback[d-1],p=progress[d]||{};
+const launchExtra=d===3?`<div class="step" style="display:block"><strong>🚀 YOUR LAUNCH / RELAUNCH CHECKLIST</strong><div style="margin-top:10px;display:grid;gap:8px"><label><input type="checkbox" class="launchCheck"> I understand that a launch is the start of a repeatable building rhythm — not just a social-media post.</label><label><input type="checkbox" class="launchCheck"> I wrote a private Launch List with at least 10 people. There is no maximum.</label><label><input type="checkbox" class="launchCheck"> I chose 5 people where a genuine conversation makes sense.</label><label><input type="checkbox" class="launchCheck"> I started 5 genuine conversations without pitching.</label><label><input type="checkbox" class="launchCheck"> I understand this is a professional, skill-building journey that rewards consistency and learning.</label></div><p class="muted" style="margin:10px 0 0">Keep people's names in your own contacts/notebook rather than storing personal details here.</p></div><div class="step" style="display:block"><strong>💬 CHALLENGE TWO: YOUR DMO ACTION TASK</strong><span style="display:block;margin-top:8px">Reply to 5 people's Instagram Stories. Make the conversations genuine. Ask about what they actually shared — coffee, holiday, work, family, fitness, food, travel, home projects, whatever is real. No random 🔥 reactions and no hidden pitch. The goal today is connection.</span><p class="muted" style="margin:10px 0 0"><strong>Connection first. Conversation second. Opportunity later.</strong> Tiny task. Big habit. Go talk to five humans. 😂</p></div>`:'';
+const peopleMap=d===4?`<div class="step" style="display:block"><strong>🧭 YOUR 5-PERSON PEOPLE MAP</strong><p class="muted" style="margin:8px 0">Use your Launch List. Keep names/details private in your own notebook or contacts. This exercise is about relevance, not collecting leads.</p><div style="margin-top:10px;display:grid;gap:10px">${[1,2,3,4,5].map(i=>`<div style="padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:12px"><strong>PERSON ${i}</strong><input class="peopleMapInput" type="text" placeholder="Person ${i} — initials or private nickname"><input class="peopleMapInput" type="text" placeholder="What could I naturally talk to them about?"><input class="peopleMapInput" type="text" placeholder="Why would this conversation be genuine?"></div>`).join('')}</div></div><div class="step" style="display:block"><strong>💬 MINI CHALLENGE</strong><span style="display:block;margin-top:8px">Write: <em>“I could genuinely start a conversation with ___ about ___ because…”</em> Then start <strong>one</strong> natural conversation. No presentation. No business pitch. No copy-and-paste script.</span></div>`:'';
+const ocedi=d===5?`<div class="step" style="display:block"><strong>🧠 OCEDI PRACTICE</strong><p class="muted" style="margin:8px 0">Scenario: Someone posts an Instagram Story from a new restaurant. Practise moving through the first four stages before an invitation.</p><div style="display:grid;gap:8px"><label><strong>OBSERVE:</strong><input class="skillInput" type="text" placeholder="What did they actually share?"></label><label><strong>CONNECT:</strong><input class="skillInput" type="text" placeholder="What genuine response could you make?"></label><label><strong>EXPLORE:</strong><input class="skillInput" type="text" placeholder="What open question could you ask?"></label><label><strong>DISCOVER:</strong><input class="skillInput" type="text" placeholder="What would you want to understand before inviting?"></label></div><p class="muted" style="margin:10px 0 0">Then have one real conversation today using the same rhythm. Do not manufacture an opportunity.</p></div>`:'';
+const opportunity=d===6?`<div class="step" style="display:block"><strong>🎥 OPPORTUNITY RESOURCE PRACTICE</strong><p class="muted" style="margin:8px 0">Use the resource that matches the person\'s stage. Your actual video links will be added to the member Video Toolkit when they are ready.</p><div style="display:grid;gap:10px"><label><strong>SCENARIO 1 — CURIOUS:</strong><select class="skillSelect"><option value="">Choose a next step…</option><option>Short opportunity video</option><option>Continue the conversation first</option></select></label><label><strong>SCENARIO 2 — GENUINELY INTERESTED:</strong><select class="skillSelect"><option value="">Choose a next step…</option><option>Longer ~23-minute opportunity presentation</option><option>Continue discovering first</option></select></label><label><strong>SCENARIO 3 — WANTS SUPPORT / HAS QUESTIONS:</strong><select class="skillSelect"><option value="">Choose a next step…</option><option>3-way conversation / support</option><option>Send more information without context</option></select></label><label><strong>WRITE YOUR MESSAGE:</strong><textarea class="skillText" placeholder="Write the short, natural message you would send before sharing the resource."></textarea></label></div><p class="muted" style="margin:10px 0 0"><strong>People first. Opportunity second. Hype never.</strong></p></div>`:'';
+const review=d===7?`<div class="step" style="display:block"><strong>🔄 YOUR 7-DAY REVIEW</strong><div style="display:grid;gap:10px;margin-top:10px"><textarea class="reviewInput" placeholder="🏆 ONE WIN — What am I proud of?"></textarea><textarea class="reviewInput" placeholder="🧠 ONE LESSON — What did I learn?"></textarea><textarea class="reviewInput" placeholder="🔧 ONE IMPROVEMENT — What will I change?"></textarea><textarea class="reviewInput" placeholder="📅 THREE REPEATABLE ACTIONS — What will I do over the next 30 days?"></textarea></div></div>`:'';
+$('lessonArea').innerHTML=`<div class="card lesson"><div class="kicker">DAY ${d} OF 7 • ${escapeHtml(m.time||'10 min')}</div><h2>${escapeHtml(m.title)}</h2><p class="muted lesson-summary">${escapeHtml(m.summary||m.teaching||'')}</p><div class="step"><strong>LEARN</strong><span>${escapeHtml(m.teaching||m.description||'')}</span></div><div class="step"><strong>THINK</strong><span>${escapeHtml(m.question||'What does this mean for you?')}</span></div><div class="step"><strong>ACT</strong><span>${escapeHtml(m.action||'Complete one practical action today.')}</span></div>${launchExtra}${peopleMap}${ocedi}${opportunity}${review}<label class="reflection-label"><strong>REFLECT</strong><textarea id="reflection" placeholder="${d===3?'What did you learn about your launch/relaunch?':d===4?'What did you notice when you looked at people through the lens of genuine relevance?':d===5?'What did you learn about listening and asking better questions?':d===6?'What did you learn about choosing the right resource and inviting without pressure?':d===7?'Summarise your week and your next 30-day rhythm.':'Write your response, what you learned and what you will do next.'}">${escapeHtml(p.reflection||'')}</textarea></label><div class="row" style="margin-top:12px"><button class="btn primary" id="saveDayBtn" type="button">${p.complete?'Save reflection':'Complete Day '+d}</button></div><div id="saveMsg" class="msg" role="status"></div><p class="muted" style="margin-top:10px">SHARE is optional. Your progress is personal. Take the next useful step.</p></div>`;
+$('saveDayBtn').addEventListener('click',saveDay);
+if(d===3){const checks=[...document.querySelectorAll('.launchCheck')];const sync=()=>{$('saveDayBtn').disabled=!p.complete&&!checks.every(x=>x.checked)};checks.forEach(c=>c.addEventListener('change',sync));sync();}
+if(d===4){const inputs=[...document.querySelectorAll('.peopleMapInput')];const sync=()=>{$('saveDayBtn').disabled=!p.complete&&!inputs.every(x=>x.value.trim())};inputs.forEach(x=>x.addEventListener('input',sync));sync();}
+if(d===5){const inputs=[...document.querySelectorAll('.skillInput')];const sync=()=>{$('saveDayBtn').disabled=!p.complete&&!inputs.every(x=>x.value.trim())};inputs.forEach(x=>x.addEventListener('input',sync));sync();}
+if(d===6){const selects=[...document.querySelectorAll('.skillSelect')],ta=document.querySelector('.skillText');const sync=()=>{$('saveDayBtn').disabled=!p.complete&&(!selects.every(x=>x.value)||!ta.value.trim())};selects.forEach(x=>x.addEventListener('change',sync));ta.addEventListener('input',sync);sync();}
+if(d===7){const inputs=[...document.querySelectorAll('.reviewInput')];const sync=()=>{$('saveDayBtn').disabled=!p.complete&&!inputs.every(x=>x.value.trim())};inputs.forEach(x=>x.addEventListener('input',sync));sync();}
+window.scrollTo({top:document.getElementById('lessonArea').offsetTop-12,behavior:'smooth'});}
+
+async function saveDay(){
+ const btn=$('saveDayBtn');const notice=$('saveMsg');btn.disabled=true;notice.className='msg';notice.textContent='Saving your progress…';notice.classList.add('show');
+ try{
+  const {data,error:userError}=await sb.auth.getUser();
+  if(userError||!data.user)throw userError||new Error('Your session has expired. Please log in again.');
+  const reflection=$('reflection').value.trim();
+  if([3,4,5,6,7].includes(currentDay) && !reflection) throw new Error('Add a short reflection before completing this day.');
+  if(currentDay===3){const checks=[...document.querySelectorAll('.launchCheck')];if(checks.length&&!checks.every(x=>x.checked))throw new Error('Complete all five Launch / Relaunch actions first.');}
+  if(currentDay===4){const inputs=[...document.querySelectorAll('.peopleMapInput')];if(inputs.length&&!inputs.every(x=>x.value.trim()))throw new Error('Complete all five People Map entries first.');}
+  if(currentDay===5){const inputs=[...document.querySelectorAll('.skillInput')];if(inputs.length&&!inputs.every(x=>x.value.trim()))throw new Error('Complete the OCEDI practice first.');}
+  if(currentDay===6){const selects=[...document.querySelectorAll('.skillSelect')],ta=document.querySelector('.skillText');if(selects.some(x=>!x.value)||!ta.value.trim())throw new Error('Complete the Opportunity Resource Practice first.');}
+  if(currentDay===7){const inputs=[...document.querySelectorAll('.reviewInput')];if(inputs.length&&!inputs.every(x=>x.value.trim()))throw new Error('Complete the full 7-Day Review first.');}
+  if(currentDay===4){
+    const inputs=[...document.querySelectorAll('.peopleMapInput')];
+    if(inputs.length && !inputs.every(x=>x.value.trim())) throw new Error('Complete all five People Map entries before marking Day 4 complete.');
+    if(!reflection) throw new Error('Add a short reflection about what you learned from the People Map.');
+  }
+  if(currentDay===3){
+    const checks=[...document.querySelectorAll('.launchCheck')];
+    if(checks.length && !checks.every(x=>x.checked)) throw new Error('Complete all five Launch / Relaunch actions before marking Day 3 complete.');
+    if(!reflection) throw new Error('Add a short reflection so you capture what you learned from your launch.');
+  }
+  const mission=missions[currentDay-1];
+  const missionId=mission?.id ?? null;
+  if(!missionId) throw new Error('We could not identify this lesson. Please refresh and try again.');
+  const payload={member_id:data.user.id,mission_id:missionId,day:currentDay,completed:true,reflection,completed_at:new Date().toISOString()};
+
+  // Deliberately avoid PostgREST upsert/onConflict here. We already have the
+  // member_id + mission_id uniqueness in PostgreSQL, but an UPDATE → INSERT
+  // flow is more resilient if the API schema cache is temporarily stale.
+  const updated=await sb.from('member_progress')
+    .update({day:payload.day,completed:payload.completed,reflection:payload.reflection,completed_at:payload.completed_at})
+    .eq('member_id',payload.member_id)
+    .eq('mission_id',payload.mission_id)
+    .select('id')
+    .maybeSingle();
+  if(updated.error)throw updated.error;
+
+  if(!updated.data){
+    const inserted=await sb.from('member_progress').insert(payload).select('id').single();
+    if(inserted.error){
+      // If another request created the row between UPDATE and INSERT, update it once more.
+      if(inserted.error.code==='23505'){
+        const retry=await sb.from('member_progress')
+          .update({day:payload.day,completed:payload.completed,reflection:payload.reflection,completed_at:payload.completed_at})
+          .eq('member_id',payload.member_id)
+          .eq('mission_id',payload.mission_id);
+        if(retry.error)throw retry.error;
+      }else throw inserted.error;
+    }
+  }
+
+  progress[currentDay]={complete:true,reflection};
+  renderDays();renderJourney();
+  notice.textContent=currentDay<7?'Day saved. Day '+(currentDay+1)+' is now unlocked.':'Day 7 complete. You finished the launch.';
+  notice.className='msg show success';
+  setTimeout(()=>{if(currentDay<7)openDay(currentDay+1)},700);
+ }catch(err){
+  notice.textContent=err.message||'We could not save your progress.';
+  notice.className='msg show error';
+ }finally{btn.disabled=false}
+}
+
+/* V14 leadership state — private to the logged-in member on this prototype. */
+let leadLight='';
+function leadKey(){return 'goodvibes_leadership_v14_'+(window.goodvibesUserId||'guest')}
+function loadLeadership(){
+  try{
+    const raw=localStorage.getItem(leadKey());
+    const d=raw?JSON.parse(raw):{readiness:{},coaching:[],checks:[]};
+    d.readiness=d.readiness||{};d.coaching=d.coaching||[];d.checks=d.checks||[];
+    document.querySelectorAll('.leadReady').forEach(x=>x.checked=!!d.readiness[x.dataset.key]);
+    renderLeadership(d);
+  }catch(e){console.warn('Leadership load',e)}
+}
+function getLeadership(){try{return JSON.parse(localStorage.getItem(leadKey()))||{readiness:{},coaching:[],checks:[]}}catch(e){return {readiness:{},coaching:[],checks:[]}}}
+function saveLeadership(d){localStorage.setItem(leadKey(),JSON.stringify(d));renderLeadership(d)}
+function renderLeadership(d){
+  const count=Object.values(d.readiness||{}).filter(Boolean).length;
+  const completed=Math.min(4, Math.floor(count/2)+(d.coaching.length?1:0)+(d.checks.length?1:0));
+  const pct=Math.round(completed/4*100);
+  $('leadProgressText').textContent=completed+'/4';$('leadProgressFill').style.width=pct+'%';
+  const stage=completed>=4?'LEGACY LEADER':completed>=2?'LEGACY ARCHITECT':'LEGACY ARCHITECT';
+  $('leadStage').textContent=stage;
+  $('leadStageText').textContent=completed>=4?'Develop others. Build leaders.':completed>=2?'Practise leadership through action.':'Develop your leadership habits.';
+  const list=$('teamCheckList');
+  if(list){
+    const arr=(d.checks||[]).slice(-5).reverse();
+    list.innerHTML=arr.length?'<div class="lead-detail">'+arr.map(x=>'<div class="leader-item"><strong>'+escapeHtml(x.person)+'</strong> <span class="lead-pill">'+escapeHtml(x.lightLabel)+'</span><br><small>'+escapeHtml(x.note||'No note added')+'</small></div>').join('')+'</div>':'';
+  }
+}
+$('saveLeadReadiness')?.addEventListener('click',()=>{
+  const d=getLeadership();d.readiness={};document.querySelectorAll('.leadReady').forEach(x=>d.readiness[x.dataset.key]=x.checked);saveLeadership(d);
+  $('leadReadinessMsg').textContent='Leadership check saved.';$('leadReadinessMsg').className='msg show success';
+});
+$('saveCoachBtn')?.addEventListener('click',()=>{
+  const person=$('coachPerson').value.trim(),situation=$('coachSituation').value.trim(),need=$('coachNeed').value.trim(),next=$('coachNext').value.trim();
+  if(!person||!situation||!need||!next){$('coachMsg').textContent='Complete the person, situation, need and next action first.';$('coachMsg').className='msg show error';return}
+  const d=getLeadership();d.coaching.push({person,situation,need,next,createdAt:new Date().toISOString()});d.coaching=d.coaching.slice(-20);saveLeadership(d);
+  $('coachMsg').textContent='Coaching note saved privately on this device.';$('coachMsg').className='msg show success';
+  $('coachPerson').value='';$('coachSituation').value='';$('coachNeed').value='';$('coachNext').value='';
+});
+document.querySelectorAll('[data-light]').forEach(btn=>btn.addEventListener('click',()=>{
+  leadLight=btn.dataset.light;
+  document.querySelectorAll('[data-light]').forEach(b=>b.classList.toggle('active',b.dataset.light===leadLight));
+}));
+$('saveTeamCheckBtn')?.addEventListener('click',()=>{
+  const person=$('teamPerson').value.trim(),note=$('teamNote').value.trim();
+  const labels={green:'GREEN — progressing',amber:'AMBER — needs support',red:'RED — human conversation',clear:'CLEARED'};
+  if(!person||!leadLight||leadLight==='clear'){$('teamCheckMsg').textContent='Add a person and choose Green, Amber or Red.';$('teamCheckMsg').className='msg show error';return}
+  const d=getLeadership();d.checks.push({person,note,light:leadLight,lightLabel:labels[leadLight],createdAt:new Date().toISOString()});d.checks=d.checks.slice(-30);saveLeadership(d);
+  $('teamCheckMsg').textContent='Team check-in saved privately on this device.';$('teamCheckMsg').className='msg show success';
+  $('teamPerson').value='';$('teamNote').value='';leadLight='';document.querySelectorAll('[data-light]').forEach(b=>b.classList.remove('active'));
+});
+
+
+/* V16 Academy — 10-module completion system. */
+const academyModules=[
+ {id:1,title:'The Goodvibes Mindset',kicker:'PURPOSE BEFORE PRESSURE',summary:'Build the mindset that turns fear, purpose and action into a repeatable way of moving forward.',learn:'Explore the difference between knowing what matters and allowing fear or comfort to decide your actions. Your goal is not to eliminate fear; it is to stop letting fear run the plan.',action:'Write your WHY in one sentence and identify one fear or comfort pattern you will stop obeying this week.',reflection:'What changed when you acted from purpose rather than pressure?',tags:['Mindset','WHY','Action']},
+ {id:2,title:'Becoming a Legacy Architect',kicker:'IDENTITY BEFORE OUTCOME',summary:'Define what you are building, who it is for and the identity you are practising.',learn:'A Legacy Architect intentionally designs a better future and develops the mindset, skills and discipline to build it. Identity becomes believable through repeated action.',action:'Write what you are building, who it is for, who you are becoming and one action that proves that identity.',reflection:'What standard are you raising for yourself?',tags:['Identity','Vision','Standards']},
+ {id:3,title:'Find Your People',kicker:'RELEVANCE OVER REACH',summary:'Stop trying to be relevant to everyone. Build a network around genuine relationships and shared relevance.',learn:'Good prospecting begins with people and communities where a real conversation can exist. Look for relationships, interests, life stages, communities and reasons to reconnect.',action:'Map 10 people or communities. For five, write a genuine reason you could start a conversation.',reflection:'Where did your strongest genuine connections come from?',tags:['Network','People','Relevance']},
+ {id:4,title:'Build Your Personal Brand',kicker:'BECOME SOMEONE PEOPLE CAN KNOW',summary:'Use your story, values and useful content to become recognisable without pretending to be someone else.',learn:'A personal brand is built through clarity and consistency. Share what you know, what you are learning, what you believe and the journey you are actually on.',action:'Create one useful post or short video that reflects your real experience, values or learning.',reflection:'What did this content communicate about who you are?',tags:['Brand','Content','Consistency']},
+ {id:5,title:'Create Real Conversations',kicker:'CONNECT BEFORE YOU PRESENT',summary:'Practise curiosity, listening and genuine connection before introducing an opportunity.',learn:'Use conversation to understand the person rather than steering every interaction toward a pitch. Ask, listen and respond to what is actually happening in their world.',action:'Have three genuine conversations this week. No pitch required. Record what you learned.',reflection:'What did listening reveal that a pitch would have missed?',tags:['OCEDI','Connection','Listening']},
+ {id:6,title:'Present With Purpose',kicker:'CLARITY WITHOUT PRESSURE',summary:'Give the right information to the right person at the right stage.',learn:'Only present after genuine discovery and relevance. Match the resource to the person\'s stage and make the next step clear. The objective is informed discussion, not pressure.',action:'Practise one permission-based invitation and identify which approved resource fits that person\'s stage.',reflection:'How did qualifying first change the quality of the invitation?',tags:['Presentation','Clarity','Permission']},
+ {id:7,title:'Follow-Up & 3-Way Support',kicker:'PROFESSIONAL PERSISTENCE',summary:'Follow up with purpose and use leadership support without outsourcing the relationship.',learn:'Follow-up means keeping commitments, checking in appropriately and helping someone take a useful next step. A 3-way conversation should add genuine context, not pressure.',action:'Choose three appropriate follow-ups and prepare a clear reason for each. Identify when 3-way support would genuinely help.',reflection:'Did your follow-up create clarity or simply create pressure?',tags:['Follow-up','3-Way','Support']},
+ {id:8,title:'Build the Business',kicker:'TURN ACTIVITY INTO A RHYTHM',summary:'Create a repeatable operating rhythm that fits your real life.',learn:'Consistency beats random bursts. Track conversations, follow-ups, content, training and presentations. Review the numbers, learn from the pattern and adjust the system.',action:'Set your next weekly targets and schedule the activity into your real calendar or routine.',reflection:'What part of your rhythm is realistic enough to repeat?',tags:['Systems','Rhythm','Activity']},
+ {id:9,title:'Develop Legacy Leaders',kicker:'DEVELOP PEOPLE, NOT DEPENDENCE',summary:'Learn to coach, encourage, challenge and develop people so they become more capable.',learn:'Leadership means creating an environment where people can learn, ask questions, make mistakes, take action and grow. Support people without creating dependence.',action:'Choose one builder. Ask what they are working on, what is getting in the way and what skill they need to practise next. Agree one action.',reflection:'Did your coaching make the person more capable or more dependent on you?',tags:['Coaching','Leadership','Development']},
+ {id:10,title:'Build Your Legacy',kicker:'PURPOSE BEYOND THE BUSINESS',summary:'Connect the business to the bigger future you are intentionally creating.',learn:'The business is one vehicle. Your wider goals, family, freedom, experiences, growth and legacy are the bigger picture. Build with purpose rather than pressure.',action:'Write your 12-month legacy statement and choose three behaviours that would make it real.',reflection:'What does success need to mean beyond a number or title?',tags:['Legacy','Future','Purpose']}
+];
+function academyKey(){return 'goodvibes_academy_v16_'+(window.goodvibesUserId||'guest')}
+function getAcademy(){try{return JSON.parse(localStorage.getItem(academyKey()))||{completed:{},reflections:{}}}catch(e){return {completed:{},reflections:{}}}}
+function saveAcademy(d){localStorage.setItem(academyKey(),JSON.stringify(d));renderAcademy(d)}
+function renderAcademy(d=getAcademy()){
+ const count=academyModules.filter(m=>d.completed[m.id]).length;
+ $('academyProgressText').textContent=count+'/10';$('academyProgressFill').style.width=(count*10)+'%';
+ $('pathLaunch').classList.toggle('current',count<2);$('pathBuild').classList.toggle('current',count>=2&&count<8);$('pathLead').classList.toggle('current',count>=8);
+ const grid=$('academyModules');
+ grid.innerHTML=academyModules.map(m=>`<button type="button" class="academy-module ${d.completed[m.id]?'done':''}" data-academy="${m.id}"><div class="academy-status">MODULE ${String(m.id).padStart(2,'0')} • ${d.completed[m.id]?'COMPLETE ✓':'NEXT SKILL'}</div><h3>${m.title}</h3><p>${m.summary}</p></button>`).join('');
+ document.querySelectorAll('[data-academy]').forEach(b=>b.addEventListener('click',()=>openAcademyModule(Number(b.dataset.academy))));
+}
+function openAcademyModule(id){
+ const m=academyModules.find(x=>x.id===id);if(!m)return;const d=getAcademy();const detail=$('academyDetail');
+ detail.classList.remove('hidden');detail.innerHTML=`<div class="kicker">MODULE ${String(m.id).padStart(2,'0')} • ${m.kicker}</div><h3>${m.title}</h3><div class="academy-tags">${m.tags.map(t=>`<span class="academy-tag">${t}</span>`).join('')}</div><div class="step"><strong>LEARN</strong><span>${m.learn}</span></div><div class="step"><strong>ACT</strong><span>${m.action}</span></div><label class="reflection-label"><strong>REFLECT</strong><textarea id="academyReflection" placeholder="Write your reflection here...">${escapeHtml(d.reflections[m.id]||'')}</textarea></label><div class="row" style="margin-top:10px"><button type="button" class="btn secondary" id="academySaveReflection">Save reflection</button><button type="button" class="btn primary" id="academyCompleteBtn">${d.completed[m.id]?'Completed ✓':'Complete module ✓'}</button></div><div id="academyMsg" class="msg"></div>`;
+ detail.scrollIntoView({behavior:'smooth',block:'start'});
+ $('academySaveReflection').onclick=()=>{const x=getAcademy();x.reflections[m.id]=$('academyReflection').value.trim();saveAcademy(x);showAcademyMsg('Reflection saved.','success')};
+ $('academyCompleteBtn').onclick=()=>{const x=getAcademy();x.reflections[m.id]=$('academyReflection').value.trim();x.completed[m.id]=true;saveAcademy(x);showAcademyMsg('Module complete. Keep moving to the next useful skill.','success');setTimeout(()=>{const next=academyModules.find(z=>z.id>m.id&&!x.completed[z.id]);if(next)openAcademyModule(next.id)},450)};
+}
+function showAcademyMsg(t,c){const el=$('academyMsg');if(!el)return;el.textContent=t;el.className='msg show '+(c||'success')}
+renderAcademy();
+
+function showView(viewId,scrollId){['homeView','academyView','eventsView','toolsView','builder30View','journeyView','communityView','leadershipView','buildView'].forEach(id=>$(id)?.classList.toggle('hidden',id!==viewId));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===viewId));closeMore();if(scrollId){setTimeout(()=>$(scrollId)?.scrollIntoView({behavior:'smooth',block:'start'}),50)}else window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav button[data-view]').forEach(btn=>btn.addEventListener('click',()=>showView(btn.dataset.view,btn.dataset.scroll)));
+// V18 navigation hardening: use direct onclick handlers as a second, simple path.
+document.querySelectorAll('nav button[data-view]').forEach(btn=>{btn.onclick=()=>showView(btn.dataset.view,btn.dataset.scroll)});
+function openMore(){$('moreSheet')?.classList.remove('hidden');$('moreSheet')?.setAttribute('aria-hidden','false')}
+function closeMore(){$('moreSheet')?.classList.add('hidden');$('moreSheet')?.setAttribute('aria-hidden','true')}
+$('moreNavBtn')?.addEventListener('click',openMore);$('moreNavBtn')&&( $('moreNavBtn').onclick=openMore );$('closeMoreBtn')?.addEventListener('click',closeMore);$('moreSheet')?.addEventListener('click',e=>{if(e.target.id==='moreSheet')closeMore()});
+document.querySelectorAll('.more-item').forEach(btn=>btn.addEventListener('click',()=>showView(btn.dataset.moreView,btn.dataset.moreScroll)));
+$('buildNavBtn')?.addEventListener('click',()=>{closeMore();showBuildMode();});
+$('openBuildBtn')?.addEventListener('click',showBuildMode);
+$('logout').addEventListener('click',async()=>{await sb.auth.signOut();location.reload()});
+// Password-recovery links arrive with a recovery token in the URL hash.
+// Do not send the member straight into the app in that state.
+const recoveryLink = new URLSearchParams((location.hash||'').replace(/^#/,'')).get('type')==='recovery';
+
+if(sb){
+  sb.auth.onAuthStateChange((event,session)=>{
+    if(event==='PASSWORD_RECOVERY' && session){
+      showRecoveryForm();
+    }else if(event==='SIGNED_OUT' && !session){
+      location.reload();
+    }
+  });
+
+  sb.auth.getSession().then(({data})=>{
+    if(data.session){
+      if(recoveryLink){
+        showRecoveryForm();
+      }else{
+        startApp(data.session.user);
+      }
+    }
+  });
+}
+function escapeHtml(value){return String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+</script>
+</body>
+</html>
